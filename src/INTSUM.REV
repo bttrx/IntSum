@@ -2,11 +2,16 @@
                   INTSUM.EXE - Interrupt Summary and Viewer
                        For Ralf Brown's Interrupt List
                      Copyright (c) 1995 Daniel D. Miller
+                     Copyright (c) 2021 Robert Riebisch
 
                          "What's New" revision list
 
               Written by Daniel D. Miller (derelict@netcom.com)
+              Updated by Robert Riebisch (rr@bttr-software.de)
 
+Version 1.7, released 2021-01-29
+    -> Functions "Search for string" and "Save selected topic" now
+       remember previous user input.
 
 Version 1.6, released 09-18-95
     -> Fixed bug in INI file, where no newline after last line

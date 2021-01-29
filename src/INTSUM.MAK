@@ -63,3 +63,22 @@ err_exit.obj: err_exit.cpp
 $(progexe) : $(OBJS)
    link $(LFLAGS) $(OBJS),$(prog),,$(libs);
 
+#  Clean-up source directory
+
+clean:
+	del *.obj
+	del $(prog).map
+
+veryclean: clean
+	del $(progexe)
+
+#  Create distribution archives
+#   (Rename to intsmVV?.zip afterwards, where `VV' is the version number)
+
+dist: distb dists
+
+distb:
+	zip -9 -o -X ..\intsmb.zip INTSUM.EXE INTSUM.INI INTSUM.REV INTSUM.TXT
+
+dists:
+	zip -9 -o -X ..\intsms.zip * -x .gitignore $(progexe) *.obj $(prog).map

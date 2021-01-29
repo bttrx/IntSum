@@ -2,8 +2,9 @@
 //  MSGS.CPP - Message and help display functions                     
 //                                                                    
 //  Copyright (c) 1996 Daniel D. Miller                               
+//  Copyright (c) 2021 Robert Riebisch                                
 //                                                                    
-//  Last Update:  08-31-95 10:10pm                                    
+//  Last Update:  2021-01-29 22:49                                    
 //                                                                    
 //  Compile with makefile                                             
 //                                                                    
@@ -43,6 +44,8 @@ Version,
 "     SnailNet:  Daniel D. Miller ",
 "                36355 BridgePointe Drive",
 "                Newark, CA  94560",
+" ",
+" Since 2021 go to https://github.com/bttrx/IntSum instead.",
    0 } ;
 
 void display_help(void)
@@ -58,7 +61,8 @@ void display_help(void)
    }
 
 //*****************************************************************
-//  This will display the message pointed to by msg_str,
+//  This will display the message pointed to by msg_str and
+//  the global string srchstr[] from previous user input,
 //  wait for user input (displaying such on the message line),
 //  store the user input in global string srchstr[],
 //  then restore the message-line text when done.
@@ -74,13 +78,17 @@ unsigned message_read(char* msg_str, char* instr)
    //  display message for user
    dprints(0, 2, MESSAGE, msg_str) ;
 
-   //  fill remainder of line with input color
+   //  display previous value of instr
    unsigned mlen = strlen(msg_str) ;
-   unsigned slen = 79 - mlen ;
+   dprints(mlen, 2, INPUT, instr) ;
+
+   //  fill remainder of line with input color
+   unsigned ilen = strlen(instr) ;
+   unsigned slen = 79 - mlen - ilen ;
+   unsigned spos = mlen + ilen ;  //  data position on screen
    spaces[slen] = 0 ;   //  terminate the spaces string at required length
-   dprints(mlen, 2, INPUT, spaces) ;
+   dprints(spos, 2, INPUT, spaces) ;
    spaces[slen] = ' ' ; //  restore the spaces string
-   unsigned spos = mlen ;  //  data position on screen
 
    //  initialize cursor
    int curmode = 1 ;
@@ -88,7 +96,7 @@ unsigned message_read(char* msg_str, char* instr)
    clock_t clk_time = clock() + BLINK_RATE ;
 
    //  get user input
-   unsigned mpos = 0 ;  //  data position in instr
+   unsigned mpos = ilen ;  //  data position in instr
    unsigned indata ;
    int done = 0 ;
    while (!done) 

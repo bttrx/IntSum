@@ -3,8 +3,9 @@
 //               Interrupt List.                                      
 //                                                                    
 //  Copyright (c) 1996 Daniel D. Miller                               
+//  Copyright (c) 2021 Robert Riebisch                                
 //                                                                    
-//  Last Update:  09-08-95 08:42pm                                    
+//  Last Update:  2021-01-26 23:11                                    
 //                                                                    
 //  Compile with makefile                                             
 //                                                                    
@@ -261,8 +262,10 @@ main(int argc, char** argv)
    clear_display(char_attr) ;
    home_cursor() ;
    puts(THANKS_MESSAGE) ;
-   puts("        Copyright (c) 1995 Dan Miller") ;
+   puts("     Copyright (c) 1995 Daniel D. Miller") ;
    puts("             derelict@netcom.com") ;
+   puts("     Copyright (c) 2021 Robert Riebisch") ;
+   puts("             rr@bttr-software.de") ;
    return 0;
    }
 

@@ -1,17 +1,17 @@
 //********************************************************************
 //  INTSUM.HPP - Data and function declarations for INTSUM app.       
 //                                                                    
-//  Written by:   Daniel D. Miller                                    
+//  Written by:   Daniel D. Miller, Robert Riebisch                   
 //                                                                    
-//  Last Update:  10-14-95 12:30pm                                    
+//  Last Update:  2021-01-26 23:14                                    
 //                                                                    
 //  Compile with makefile                                             
 //                                                                    
 //********************************************************************
 
-#define  cur_version "1.6"
+#define  cur_version "1.7"
 
-#define Version   "   Interrupt Summary Version " cur_version ", by Daniel D. Miller, Copyright (c) 1995       "
+#define Version   "  Interrupt Summary Version " cur_version ", by Daniel D. Miller, Copyright (c) 1995/2021   "
 #define THANKS_MESSAGE  "Thank you for using INTSUM version " cur_version " !!"
 
 // #include <memcheck.h>
