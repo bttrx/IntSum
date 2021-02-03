@@ -1,13 +1,11 @@
 //********************************************************************
-//  MSGS.CPP - Message and help display functions                     
-//                                                                    
-//  Copyright (c) 1996 Daniel D. Miller                               
-//  Copyright (c) 2021 Robert Riebisch                                
-//                                                                    
-//  Last Update:  2021-01-29 22:49                                    
-//                                                                    
-//  Compile with makefile                                             
-//                                                                    
+//  MSGS.CPP - Message and help display functions
+//
+//  Copyright (c) 1996 Daniel D. Miller
+//  Copyright (c) 2021 Robert Riebisch
+//
+//  Compile with makefile
+//
 //********************************************************************
 
 #include <stdio.h>
@@ -52,7 +50,7 @@ void display_help(void)
    {
    clear_display(HELP_TEXT) ;
    unsigned j = 0 ;
-   while (help_str[j] != 0) 
+   while (help_str[j] != 0)
       {
       dprints(1, j, HELP_TEXT, help_str[j]) ;
       j++ ;
@@ -99,14 +97,14 @@ unsigned message_read(char* msg_str, char* instr)
    unsigned mpos = ilen ;  //  data position in instr
    unsigned indata ;
    int done = 0 ;
-   while (!done) 
+   while (!done)
       {
-      if (key_hit()) 
+      if (key_hit())
          {
          //curmode = 0 ;
          dprintc(spos, 2, INPUT, CURSOR_OFF) ;
          indata = get_key() ;
-         switch (indata) 
+         switch (indata)
             {
             case Key_ESC:
                //  turn off cursor
@@ -122,7 +120,7 @@ unsigned message_read(char* msg_str, char* instr)
                break;
 
             case Key_BSPACE:
-               if (mpos > 0) 
+               if (mpos > 0)
                   {
                   mpos-- ;
                   *(instr+mpos) = 0 ;  //  NULL-terminate the string
@@ -131,10 +129,10 @@ unsigned message_read(char* msg_str, char* instr)
                break;
 
             default:
-               //  this won't work for ALL characters, 
+               //  this won't work for ALL characters,
                //  but it will work for normal ASCII chars.
                char outchr = (char) (indata & 0x00FF) ;
-               if (mpos < slen) 
+               if (mpos < slen)
                   {
                   *(instr+mpos) = outchr ;
                   mpos++ ;
@@ -148,17 +146,17 @@ unsigned message_read(char* msg_str, char* instr)
          }  //  if a key was pressed, read it
 
       //  If no key is pressed, update cursor
-      else 
+      else
          {
-         if (clock() > clk_time) 
+         if (clock() > clk_time)
             {
-            if (curmode == 0) 
+            if (curmode == 0)
                {
                curmode = 1 ;
                dprintc(spos, 2, INPUT, CURSOR_ON) ;
                clk_time = clock() + BLINK_RATE ;
                }
-            else 
+            else
                {
                curmode = 0 ;
                dprintc(spos, 2, INPUT, CURSOR_OFF) ;
