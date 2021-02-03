@@ -1,15 +1,13 @@
 //********************************************************************
-//  INTSUM.HPP - Data and function declarations for INTSUM app.       
-//                                                                    
-//  Written by:   Daniel D. Miller, Robert Riebisch                   
-//                                                                    
-//  Last Update:  2021-01-26 23:14                                    
-//                                                                    
-//  Compile with makefile                                             
-//                                                                    
+//  INTSUM.HPP - Data and function declarations for INTSUM app.
+//
+//  Written by:   Daniel D. Miller, Robert Riebisch
+//
+//  Compile with makefile
+//
 //********************************************************************
 
-#define  cur_version "1.7"
+#define  cur_version "1.8"
 
 #define Version   "  Interrupt Summary Version " cur_version ", by Daniel D. Miller, Copyright (c) 1995/2021   "
 #define THANKS_MESSAGE  "Thank you for using INTSUM version " cur_version " !!"
@@ -19,7 +17,7 @@
 #define uchar  unsigned char
 #define ulong  unsigned long
 
-#define IFF    
+#define IFF
 #define THENN  ?
 #define ELSSE  :
 
@@ -51,19 +49,19 @@ extern const int LOOP_FOREVER ;
 #define  END_OF_FILE    6
 
 //********************************************************************
-//  Block reads usually under-shoot the actual buffer size            
-//  by a certain amount, and that number of bytes is read             
-//  into a separate buffer.  The reason for that is so I can          
-//  search for end-of-line characters and tack them onto the          
-//  end of the read buffer, ensuring that each buffer always          
-//  contains complete lines.  This allows me to gain the speed        
-//  advantage of block reads, without having to deal with             
-//  partial lines in the program as a whole.                          
-//                                                                    
-//  The constant <UNDERSHOOT> is the number of bytes by which I       
-//  under-read the block read, and read separately into the line      
-//  buffer.  This value needs to be larger than the longest possible  
-//  line in the input file.                                           
+//  Block reads usually under-shoot the actual buffer size
+//  by a certain amount, and that number of bytes is read
+//  into a separate buffer.  The reason for that is so I can
+//  search for end-of-line characters and tack them onto the
+//  end of the read buffer, ensuring that each buffer always
+//  contains complete lines.  This allows me to gain the speed
+//  advantage of block reads, without having to deal with
+//  partial lines in the program as a whole.
+//
+//  The constant <UNDERSHOOT> is the number of bytes by which I
+//  under-read the block read, and read separately into the line
+//  buffer.  This value needs to be larger than the longest possible
+//  line in the input file.
 //********************************************************************
 #define UNDERSHOOT   100
 
@@ -76,9 +74,9 @@ extern char rdtemp[UNDERSHOOT] ;
 extern char spaces[121] ;  //  120 spaces long
 
 //********************************************************************
-struct int_sum_line 
+struct int_sum_line
    {
-   char  file ;            //  if ' ', use single list file, 
+   char  file ;            //  if ' ', use single list file,
                            //  else use INTERRUP.<FILE>.
    // unsigned long  line ;   //  byte offset into interrupt file.
    char  foffset[8] ;      //  byte offset into interrupt file
@@ -86,7 +84,7 @@ struct int_sum_line
    char  data[81] ;        //  data to display onscreen.
    };
 
-union sum_conv 
+union sum_conv
    {
    char  instr[sizeof(struct int_sum_line)] ;
    struct int_sum_line idx;
@@ -105,19 +103,19 @@ struct refs
    unsigned offset ;  //  into current buffer
    //  file pointers used by fsetpos()
    long hdptr[2] ;
-   long tlptr[2] ;  
+   long tlptr[2] ;
    } ;
 extern refs ref ;
 
 //*****************************************************************
 //  list-file data struct
 //*****************************************************************
-struct lines 
+struct lines
    {
    char instr[81] ;
    };
 
-struct lists 
+struct lists
    {
    lines *bfr[2] ; //  forward and aft parsed buffers
    unsigned lines[2] ;     // number of lines of data in parsed buffers
@@ -125,14 +123,14 @@ struct lists
    unsigned offset ;  //  into current buffer
    //  file pointers used by fsetpos()
    long hdptr[2] ;
-   long tlptr[2] ;  
+   long tlptr[2] ;
    } ;
 extern lists list ;
 
 extern const unsigned list_lines ;
 
 //  make this global so scrolling fcns can get to it.
-extern FILE* lfile ;  
+extern FILE* lfile ;
 
 //*****************************************************************
 //  string-search data struct
@@ -144,7 +142,7 @@ struct searchs
    unsigned offset ;  // line in current buffer
    //  file pointers used by fsetpos()
    long hdptr ;
-   long tlptr ;  
+   long tlptr ;
    } ;
 extern searchs search ;
 
@@ -184,7 +182,7 @@ struct vidptr
    unsigned currow ;    //  screen offset from DATA_TOP
    } ;
 extern vidptr ivideo ;
-      
+
 extern unsigned window_rows ;  //  data lines, not counting header
 
 extern FILE* index ;
