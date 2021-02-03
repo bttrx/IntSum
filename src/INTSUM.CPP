@@ -1,14 +1,12 @@
 //********************************************************************
-//  INTSUM.CPP - Display/search program for Ralf Brown's              
-//               Interrupt List.                                      
-//                                                                    
-//  Copyright (c) 1996 Daniel D. Miller                               
-//  Copyright (c) 2021 Robert Riebisch                                
-//                                                                    
-//  Last Update:  2021-01-26 23:11                                    
-//                                                                    
-//  Compile with makefile                                             
-//                                                                    
+//  INTSUM.CPP - Display/search program for Ralf Brown's
+//               Interrupt List.
+//
+//  Copyright (c) 1996 Daniel D. Miller
+//  Copyright (c) 2021 Robert Riebisch
+//
+//  Compile with makefile
+//
 //********************************************************************
 
 #include <stdio.h>
@@ -41,7 +39,7 @@ main(int argc, char** argv)
    window_rows = screen_rows - DATA_TOP ; //  base-1
    select_video_seg(0) ;   // auto-detect video segment
 
-   //  initialize the path for IntList files, 
+   //  initialize the path for IntList files,
    //  before reading INI file.
    strcpy(ildrive, inidrive) ;
    strcpy(ilpath , inipath) ;
@@ -51,45 +49,45 @@ main(int argc, char** argv)
 
    //  allocate raw-data read buffer
    readptr = new char[(unsigned) BFR_SIZE] ;
-   if (readptr == NULL) 
+   if (readptr == NULL)
       error_exit(OUT_OF_MEMORY, NULL) ;
 
    //  allocate ref-file buffers
    ref.bfr[0] = new sum_conv[isl_lines] ;
-   if (ref.bfr[0] == NULL) 
+   if (ref.bfr[0] == NULL)
       error_exit(OUT_OF_MEMORY, NULL) ;
    ref.bfr[1] = new sum_conv[isl_lines] ;
-   if (ref.bfr[1] == NULL) 
+   if (ref.bfr[1] == NULL)
       error_exit(OUT_OF_MEMORY, NULL) ;
 
    //  allocate ref-search buffer
    search.bfr = new sum_conv[isl_lines] ;
-   if (search.bfr == NULL) 
+   if (search.bfr == NULL)
       error_exit(OUT_OF_MEMORY, NULL) ;
 
    //  allocate list-file buffers
    list.bfr[0] = new lines[list_lines] ;
-   if (list.bfr[0] == NULL) 
+   if (list.bfr[0] == NULL)
       error_exit(OUT_OF_MEMORY, NULL) ;
    list.bfr[1] = new lines[list_lines] ;
-   if (list.bfr[1] == NULL) 
+   if (list.bfr[1] == NULL)
       error_exit(OUT_OF_MEMORY, NULL) ;
 
    //  search for interrup.idx
    //  Build it if not present
-   //  
+   //
    //  NOTE: if files are opened in TEXT mode,
    //        EOLs get translated from CRLF in file to \n in buffer,
    //        and "bytes read" is not what was asked for.
    //        This program uses BINARY to solve some of these problems.
    _makepath(tempstr, ildrive, ilpath, "interrup", "idx") ;
    index = fopen(tempstr, "rb") ;
-   if (index == NULL) 
+   if (index == NULL)
       {
       build_index() ;
       _makepath(tempstr, ildrive, ilpath, "interrup", "idx") ;
       index = fopen(tempstr, "rb") ;
-      if (index == NULL) 
+      if (index == NULL)
          error_exit(NO_READ_FILE, "interrup.idx") ;
       }
    //  leave ref file open
@@ -99,9 +97,9 @@ main(int argc, char** argv)
    ref.offset   = 0 ;
    fpos_t pos = 0 ;
    fill_ref_buffers(pos) ;
-   
+
    //****************************************
-   //  hold off building display until 
+   //  hold off building display until
    //  setup operations are successful.
    //****************************************
 
@@ -116,16 +114,16 @@ main(int argc, char** argv)
    display_ref_file() ;
 
    //  main keyboard handler
-   char srchstr[81] ;
-   srchstr[0] = 0 ;  // reset initial search string
+   char srchstr[81] = "";
+   char exportfile[81] = "";
    unsigned rtemp ;
    done = 0 ;
-   while (!done) 
+   while (!done)
       {
       mark_cursor_line(ivideo.currow, SELECTED) ;
       unsigned indata = get_key() ;
       mark_cursor_line(ivideo.currow, MAIN_TEXT) ;
-      switch (indata) 
+      switch (indata)
          {
          case Key_ENTER:   //  seek info on current entry
             rtemp = ivideo.currow ;
@@ -160,18 +158,18 @@ main(int argc, char** argv)
 
             //  now read one line and re-position file pointer to full line
             count = seek_next_line(index) ;
-            if (count < 0) 
+            if (count < 0)
                error_exit(BAD_SEARCH, NULL) ;
             pos += count ;
             fill_ref_buffers(pos) ;
 
             //  now, figure out which line is top of (end of screen)
-            if (ref.lines[1] < window_rows) 
+            if (ref.lines[1] < window_rows)
                {
                ref.cur_bfr = 0 ;
                ref.offset =  ref.lines[0] + ref.lines[1] - window_rows ;
                }
-            else 
+            else
                {
                ref.cur_bfr = 1 ;
                ref.offset = ref.lines[1] - window_rows ;
@@ -184,7 +182,7 @@ main(int argc, char** argv)
          case Key_PGUP:
             rtemp = ivideo.currow ;
             ivideo.currow = DATA_TOP ;
-            for (j=0; j<window_rows; j++) 
+            for (j=0; j<window_rows; j++)
                scroll_page_down() ;
             ivideo.currow = rtemp ;
             break;
@@ -196,7 +194,7 @@ main(int argc, char** argv)
          case Key_PGDN:
             rtemp = ivideo.currow ;
             ivideo.currow = screen_rows - 1 ;
-            for (j=0; j<window_rows; j++) 
+            for (j=0; j<window_rows; j++)
                scroll_page_up() ;
             ivideo.currow = rtemp ;
             break;
@@ -214,7 +212,7 @@ main(int argc, char** argv)
          case Key_S: //  search for string
             if (message_read("Enter string to search for: ", srchstr) == 0)
                {
-               if (search_ref_buffers(srchstr) != 0) 
+               if (search_ref_buffers(srchstr) != 0)
                    search_ref_file(srchstr) ;
                }
             break;
@@ -222,21 +220,20 @@ main(int argc, char** argv)
          case Key_F3:
          case Key_r:
          case Key_R: //  repeat last string search
-            if (strlen(srchstr) == 0) 
+            if (strlen(srchstr) == 0)
                message_show("There is no current search string") ;
-            else if (search_ref_buffers(srchstr) != 0) 
+            else if (search_ref_buffers(srchstr) != 0)
                 search_ref_file(srchstr) ;
             break;
 
          case Key_F4:
          case Key_t:
          case Key_T: //  save current topic
-            char sfile[81] ;  //  local storage for filename
-            if (message_read("Enter filename to save to: ", sfile) == 0  &&
-                strlen(sfile) > 0)
+            if (message_read("Enter filename to save to: ", exportfile) == 0  &&
+                strlen(exportfile) > 0)
                {
                rtemp = ivideo.currow ;
-               process_list_file(1, sfile) ;
+               process_list_file(1, exportfile) ;
                ivideo.currow = rtemp ;
                display_ref_file() ;
                }
@@ -270,21 +267,21 @@ main(int argc, char** argv)
    }
 
 //*****************************************************************
-//  read <UNDERSHOOT> bytes from (infile) into global (rdtemp),    
-//  then scan to beginning of next line and return number          
-//  of bytes to that next line.                                    
+//  read <UNDERSHOOT> bytes from (infile) into global (rdtemp),
+//  then scan to beginning of next line and return number
+//  of bytes to that next line.
 //*****************************************************************
 int seek_next_line(FILE* infile)
    {
    int count = 0 ;
    fread(rdtemp, 1, UNDERSHOOT, infile) ;
    int done = 0 ;
-   while (!done) 
+   while (!done)
       {
-      if (rdtemp[count] == 0x0D  ||  rdtemp[count] == 0x0A) 
+      if (rdtemp[count] == 0x0D  ||  rdtemp[count] == 0x0A)
          {
          done = 1 ;
-         while (rdtemp[count] == 0x0D  ||  rdtemp[count] == 0x0A) 
+         while (rdtemp[count] == 0x0D  ||  rdtemp[count] == 0x0A)
             {
             if (++count == UNDERSHOOT)
                return -1 ;
@@ -305,25 +302,25 @@ ulong make_laddr(char* instr)
    }
 
 //*****************************************************************
-//  NULL-terminates all lines in inbfr, by converting all          
-//  CR and LF into NULL.  Also counts the lines and returns count. 
+//  NULL-terminates all lines in inbfr, by converting all
+//  CR and LF into NULL.  Also counts the lines and returns count.
 //*****************************************************************
 unsigned convert_lines(char* inbfr, unsigned rcount)
    {
    unsigned count = 0 ;    //  output line count
    unsigned bcount = 0 ;   //  input character count
-   while (bcount < rcount) 
+   while (bcount < rcount)
       {
-      if (*inbfr == 0x0D  ||  *inbfr == 0x0A) 
+      if (*inbfr == 0x0D  ||  *inbfr == 0x0A)
          {
          count++ ;
-         while (*inbfr == 0x0D  ||  *inbfr == 0x0A) 
+         while (*inbfr == 0x0D  ||  *inbfr == 0x0A)
             {
             *inbfr++ = 0 ;
             bcount++ ;
             }
          }
-      else 
+      else
          {
          inbfr++ ;
          bcount++ ;
@@ -334,7 +331,7 @@ unsigned convert_lines(char* inbfr, unsigned rcount)
 
 //*****************************************************************
 //  parse lines from input file.
-//  Back file up to 
+//  Back file up to
 //*****************************************************************
 unsigned fill_search_buffer(FILE* infile)
    {
@@ -346,7 +343,7 @@ unsigned fill_search_buffer(FILE* infile)
 
    //  fill the readbfr from ref file
    unsigned rlines = fill_read_buffer(infile) ;
-   if (rlines == 0) 
+   if (rlines == 0)
       return 0;
 
    //  DEBUG:
@@ -355,14 +352,14 @@ unsigned fill_search_buffer(FILE* infile)
    //  now, translate the read buffer into the ref-list buffer
    unsigned lcount = isl_lines ;
    char *sptr = readptr ;
-   while (!done) 
+   while (!done)
       {
       unsigned slen = strlen(sptr) ;
 
       //  DEBUG:
       {
       ulong saddr = make_laddr(search.bfr[count].instr) ;
-      if ((saddr+slen - iaddr) > (ulong) BFR_SIZE) 
+      if ((saddr+slen - iaddr) > (ulong) BFR_SIZE)
          {
          printf("\nSearch overrun:\n") ;
          printf("count = %d\n", count) ;
@@ -373,9 +370,9 @@ unsigned fill_search_buffer(FILE* infile)
       strcpy(search.bfr[count].instr, sptr) ;
 
       //  pad short lines with spaces
-      if (slen < sizeof(sum_conv)) 
+      if (slen < sizeof(sum_conv))
          {
-         for (j=slen; j<last_ref_char; j++) 
+         for (j=slen; j<last_ref_char; j++)
             search.bfr[count].instr[j] = ' ' ;
          //  now, NULL-terminate the line
          search.bfr[count].instr[last_ref_char] = 0 ;
@@ -387,10 +384,10 @@ unsigned fill_search_buffer(FILE* infile)
 
       count++ ;
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-      //  If this terminates on lcount, rather than rlines, 
+      //  If this terminates on lcount, rather than rlines,
       //  the input buffer will have to be adjusted
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-      if (--lcount == 0  ||  count == rlines) 
+      if (--lcount == 0  ||  count == rlines)
          {
          done = 1 ;
          //  set tail-pointer variable in current ref struct
@@ -409,38 +406,38 @@ unsigned fill_search_buffer(FILE* infile)
 //  a full line at the end,
 //  then replace all 0x0D and 0x0A with NULLs.
 //  Return a count of lines.
-//  
+//
 //  This routine reads from the current input file pointer
 //*****************************************************************
 unsigned fill_read_buffer(FILE* infile)
    {
    //***********************************************************
    //  read data into read buffer and ensure even-line boundary.
-   //  This method assumes that the input file has already      
-   //  been correctly positioned using fseek().                 
+   //  This method assumes that the input file has already
+   //  been correctly positioned using fseek().
    //***********************************************************
    unsigned rbytes = fread(readptr, 1, ((unsigned) BFR_SIZE)-UNDERSHOOT, infile) ;
-   if (rbytes == 0) 
+   if (rbytes == 0)
       return 0;
 
    //***********************************************************
-   //                   FILL LAST LINE                          
-   //  if last line doesn't already end with a newline,         
-   //  read more data to get there, and tack it on the end.     
+   //                   FILL LAST LINE
+   //  if last line doesn't already end with a newline,
+   //  read more data to get there, and tack it on the end.
    //***********************************************************
    char* endptr = readptr + rbytes - 1 ;
    if (*endptr != 0x0D  &&  *endptr != 0x0A)
       {
       unsigned slen = fread(rdtemp, 1, UNDERSHOOT, infile) ;
-      if (slen == 0) 
+      if (slen == 0)
          error_exit(NO_READ_FILE, "reading infile") ;
 
-      unsigned j=0; 
+      unsigned j=0;
       //  search for newline (it MUST be there!!)
       while (rdtemp[j] != 0x0D  &&  rdtemp[j] != 0x0A)
          {
          j++ ;
-         if (j >= UNDERSHOOT) 
+         if (j >= UNDERSHOOT)
             error_exit(BAD_FORMAT, rdtemp) ;
          }
       //  then NULL-out and count the newlines
@@ -448,13 +445,13 @@ unsigned fill_read_buffer(FILE* infile)
          {
          rdtemp[j] = 0 ;
          j++ ;
-         if (j >= UNDERSHOOT) 
+         if (j >= UNDERSHOOT)
             error_exit(BAD_FORMAT, rdtemp) ;
          }
       slen = j ;
 
       //  copy the extra bytes into read buffer
-      for (j=0; j<slen; j++) 
+      for (j=0; j<slen; j++)
          {
          *endptr++ = rdtemp[j] ;
          }
@@ -479,7 +476,7 @@ void display_logo(void)
 //*****************************************************************
 void build_index(void)
    {
-   union sum_conv outList ; 
+   union sum_conv outList ;
    char lname[_MAX_PATH] ;
    FILE* idxfile ;
    FILE* infile ;
@@ -491,7 +488,7 @@ void build_index(void)
 
    _makepath(tempstr, ildrive, ilpath, "interrup", "idx") ;
    idxfile = fopen(tempstr, "wb") ;
-   if (idxfile == NULL) 
+   if (idxfile == NULL)
       error_exit(NO_WRITE_FILE, "INTERRUP.IDX") ;
 
    puts(Version) ;
@@ -506,14 +503,14 @@ void build_index(void)
       printf("reading INTERRUP.x sections: ") ;
       _makepath(lname, ildrive, ilpath, "interrup", "a") ;
       infile = fopen(lname, "rb") ;
-      if (infile == NULL) 
+      if (infile == NULL)
          {
          fclose(idxfile) ;
          unlink(tempstr) ;
          error_exit(NO_LIST_FILE, lname) ;
          }
       }
-   else 
+   else
       {
       lflag = 1 ;
       lext = ' ' ;
@@ -522,12 +519,12 @@ void build_index(void)
    fclose(infile) ;
 
    int done = 0 ;
-   while (!done) 
+   while (!done)
       {
       //  open the next input file
       infile = fopen(lname, "rb") ;
       //  if next file can't be opened, we're done!!
-      if (infile == NULL) 
+      if (infile == NULL)
          {
          fclose(idxfile) ;
          printf("\nRef file contains %lu lines\n", out_lines) ;
@@ -536,14 +533,14 @@ void build_index(void)
       putchar(lext) ;
 
       fpos = 0L ;
-      //  now that the next List file is open, 
+      //  now that the next List file is open,
       //  start searching for divider lines
       while ((fgets(instr, 128, infile)) != NULL)
          {
-         if (strncmp(instr, "--------", 8) == 0  &&  
+         if (strncmp(instr, "--------", 8) == 0  &&
              instr[9] == '-'  &&
              instr[8] != '!'
-            ) 
+            )
             {
             out_lines++ ;
 
@@ -572,7 +569,7 @@ void build_index(void)
 
             //  Trim line to 80 chars
             int inlen = strlen(instr) ;
-            while (instr[inlen-1] == 0x0D  ||  instr[inlen-1] == 0x0A) 
+            while (instr[inlen-1] == 0x0D  ||  instr[inlen-1] == 0x0A)
                {
                instr[--inlen] = 0 ;
                }
@@ -586,12 +583,12 @@ void build_index(void)
          fgetpos(infile, &fpos) ; //  update input-file pointer
          }  //  if input file not yet empty
       fclose(infile) ;
-      if (lext == ' ') 
+      if (lext == ' ')
          {
          done = 1 ;
          fclose(idxfile) ;
          }
-      else 
+      else
          {
          extn[1] = ++lext ;
          _makepath(lname, ildrive, ilpath, "interrup", extn) ;
