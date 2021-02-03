@@ -9,6 +9,10 @@
               Written by Daniel D. Miller (derelict@netcom.com)
               Updated by Robert Riebisch (rr@bttr-software.de)
 
+Version 1.8
+    -> Fix sometimes displaying garbage on "Enter filename to save to"
+       prompt on startup.
+
 Version 1.7, released 2021-01-29
     -> Functions "Search for string" and "Save selected topic" now
        remember previous user input.
@@ -26,30 +30,30 @@ Version 1.5, released 09-08-95
        Sadly, this was at the cost of losing the ending screen,
        as I now clear screen on exit.
 
-Version 1.4, released 09-04-95 
-    -> Fixed a variety of bugs and quirks.  
+Version 1.4, released 09-04-95
+    -> Fixed a variety of bugs and quirks.
 
-Version 1.3, released 08-20-95 
+Version 1.3, released 08-20-95
     -> Added LIST_DIR item to the INI file, which permits user to
        specify a separate directory for the Interrupt List files.
        Thus, INTSUM.* may be kept anywhere in your path; it no longer
        needs to be in the same directory as the Interrupt List files.
 
-Version 1.2, released 07-31-95 
+Version 1.2, released 07-31-95
     -> Changed TAB size from 4 to 8 in List displays.
     -> Blank lines are no longer deleted from list files.
 
-Version 1.1, released 07-15-95 
+Version 1.1, released 07-15-95
     -> Fixed bugs in the pathing code.
 
-Version 1.0, released 07-13-95 
+Version 1.0, released 07-13-95
     -> Configuration via INTSUM.INI is now implemented.
     -> case-insensitive search is significantly faster.
     -> Combined-file (INTERRUP.LST) support is now working!!
     -> Save Current Topic to File is now implemented.
        (from Reference level only)
 
-Version 0.90, released 06-21-95 
+Version 0.90, released 06-21-95
     -> <S>earch now works properly in all windows.
     -> <R>earch Last Search now works properly in all windows.
        (NOTE on searches:  searches in the List windows
