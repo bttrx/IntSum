@@ -61,11 +61,11 @@ void display_help(void)
    }
 
 //*****************************************************************
-//  This will display the message pointed to by msg_str and
-//  the global string srchstr[] from previous user input,
-//  wait for user input (displaying such on the message line),
-//  store the user input in global string srchstr[],
-//  then restore the message-line text when done.
+//  This will display the message pointed to by msg_str and any
+//  previous user input, wait for new user input (displaying such
+//  on the message line), store the new user input to the string
+//  pointed to by instr, then restore the message-line text when
+//  done.
 //  It returns the 0 on successful completion, Key_ESC on escape.
 //*****************************************************************
 //lint -e743
