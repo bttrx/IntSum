@@ -258,11 +258,6 @@ main(int argc, char** argv)
 
    clear_display(char_attr) ;
    home_cursor() ;
-   puts(THANKS_MESSAGE) ;
-   puts("     Copyright (c) 1995 Daniel D. Miller") ;
-   puts("             derelict@netcom.com") ;
-   puts("     Copyright (c) 2021 Robert Riebisch") ;
-   puts("             rr@bttr-software.de") ;
    return 0;
    }
 

@@ -10,7 +10,6 @@
 #define  cur_version "1.8"
 
 #define Version   "  Interrupt Summary Version " cur_version ", by Daniel D. Miller, Copyright (c) 1995/2021   "
-#define THANKS_MESSAGE  "Thank you for using INTSUM version " cur_version " !!"
 
 // #include <memcheck.h>
 
