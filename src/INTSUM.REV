@@ -13,6 +13,7 @@ Version 1.8
     -> Fix sometimes displaying garbage on "Enter filename to save to"
        prompt on startup.
     -> Make use of, so far unused, INI file BORDER setting.
+    -> Add NC 3.0-inspired color scheme to INTSUM.INI.
 
 Version 1.7, released 2021-01-29
     -> Functions "Search for string" and "Save selected topic" now

@@ -31,6 +31,16 @@ uchar MESSAGE   = 0x1C ;
 uchar INPUT     = 0x34 ;
 uchar HELP_TEXT = 0x07 ;
 
+//  NC 3.0-inspired color scheme
+uchar BORDER_NC3    = 0x1B ;
+uchar LOGO_NC3      = 0x1E ;
+uchar MAIN_TEXT_NC3 = 0x1B ;
+uchar SELECTED_NC3  = 0x30 ;
+uchar FILENAME_NC3  = 0x1B ;
+uchar MESSAGE_NC3   = 0x70 ;
+uchar INPUT_NC3     = 0x30 ;
+uchar HELP_TEXT_NC3 = 0x30 ;
+
 struct config_opt {
    char* name ;
    uchar* attr ;
@@ -112,6 +122,16 @@ fprintf(inifile, "FILENAME     = 0x%02X ; filename in list window\n", FILENAME) 
 fprintf(inifile, "MESSAGE      = 0x%02X ; status message color\n", MESSAGE) ;
 fprintf(inifile, "INPUT        = 0x%02X ; user input fields\n", INPUT) ;
 fprintf(inifile, "HELP_TEXT    = 0x%02X ; help-screen color\n", HELP_TEXT) ;
+fprintf(inifile, "\n") ;
+fprintf(inifile, ";  NC 3.0-inspired color scheme\n") ;
+fprintf(inifile, ";BORDER       = 0x%02X ; window borders\n", BORDER_NC3) ;
+fprintf(inifile, ";LOGO         = 0x%02X ; window banners\n", LOGO_NC3) ;
+fprintf(inifile, ";MAIN_TEXT    = 0x%02X ; primary text color\n", MAIN_TEXT_NC3) ;
+fprintf(inifile, ";SELECTED     = 0x%02X ; current cursor line\n", SELECTED_NC3) ;
+fprintf(inifile, ";FILENAME     = 0x%02X ; filename in list window\n", FILENAME_NC3) ;
+fprintf(inifile, ";MESSAGE      = 0x%02X ; status message color\n", MESSAGE_NC3) ;
+fprintf(inifile, ";INPUT        = 0x%02X ; user input fields\n", INPUT_NC3) ;
+fprintf(inifile, ";HELP_TEXT    = 0x%02X ; help-screen color\n", HELP_TEXT_NC3) ;
 fprintf(inifile, "\n") ;
 fprintf(inifile, "VIDEO_SEG    = 0x%04X ; Video segment: 0xB800 or 0xB000\n",
                   get_video_seg()) ;
