@@ -461,9 +461,9 @@ unsigned fill_read_buffer(FILE* infile)
 void display_logo(void)
    {
    dprints(0, 0, LOGO, logo) ;
-   dprints(0, 1, LOGO, dividers) ;
+   dprints(0, 1, BORDER, dividers) ;
    dprints(0, 2, LOGO, header) ;
-   dprints(0, 3, LOGO, dividerd) ;
+   dprints(0, 3, BORDER, dividerd) ;
    }
 
 //*****************************************************************

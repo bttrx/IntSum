@@ -164,6 +164,7 @@ extern char ildrive[4] ;
 extern "C" unsigned screen_rows ;
 extern "C" unsigned screen_cols ;
 
+extern uchar BORDER    ;
 extern uchar MAIN_TEXT ;
 extern uchar SELECTED  ;
 extern uchar LOGO      ;

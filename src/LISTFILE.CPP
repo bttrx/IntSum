@@ -36,7 +36,7 @@ void process_list_file(int list_mode, char *save_file)
    int_sum_line *iptr = (int_sum_line *) lstr ;
 
    dprints(0, 2, LOGO, list_header) ;
-   dprints(0, 3, LOGO, list_dividerd) ;
+   dprints(0, 3, BORDER, list_dividerd) ;
 
    //  initialize list-file variables which are not
    //  otherwise later set up.
@@ -98,7 +98,7 @@ void process_list_file(int list_mode, char *save_file)
          message_show(tempstr) ;
          fclose(lfile) ;
          dprints(0, 2, LOGO, header) ;
-         dprints(0, 3, LOGO, dividerd) ;
+         dprints(0, 3, BORDER, dividerd) ;
          return ;
          }
 
@@ -123,7 +123,7 @@ void process_list_file(int list_mode, char *save_file)
       fclose(outfile) ;
       fclose(lfile) ;
       dprints(0, 2, LOGO, header) ;
-      dprints(0, 3, LOGO, dividerd) ;
+      dprints(0, 3, BORDER, dividerd) ;
       return ;
       }
 
@@ -247,7 +247,7 @@ void process_list_file(int list_mode, char *save_file)
          case Key_ESC:
             fclose(lfile) ;
             dprints(0, 2, LOGO, header) ;
-            dprints(0, 3, LOGO, dividerd) ;
+            dprints(0, 3, BORDER, dividerd) ;
             done = 1 ;
             break;
 
