@@ -1,12 +1,11 @@
 //********************************************************************
-//  LISTFILE.CPP - Handle ListFile display, searching, etc.           
-//                                                                    
-//  Copyright (c) 1996 Daniel D. Miller                               
-//                                                                    
-//  Last Update:  09-04-95 11:17pm                                    
-//                                                                    
-//  Compile with makefile                                             
-//                                                                    
+//  LISTFILE.CPP - Handle ListFile display, searching, etc.
+//
+//  Copyright (c) 1996 Daniel D. Miller
+//  Copyright (c) 2021 Robert Riebisch
+//
+//  Compile with makefile
+//
 //********************************************************************
 
 #include <stdio.h>
@@ -40,32 +39,32 @@ void process_list_file(int list_mode, char *save_file)
 
    //  initialize list-file variables which are not
    //  otherwise later set up.
-   list.offset = 0 ; 
+   list.offset = 0 ;
    list.cur_bfr = 0 ;
    list.hdptr[0] = 0L ;
 
    //  figure out which line in ref file was selected
    ref_bfr = (unsigned) ref.cur_bfr ;
    unsigned currow = ref.offset + ivideo.currow - DATA_TOP ;
-   if (currow > (ref.lines[0] + ref.lines[1])) 
+   if (currow > (ref.lines[0] + ref.lines[1]))
       return ;
-   if (ref.cur_bfr == 0  &&  currow > ref.lines[0]) 
+   if (ref.cur_bfr == 0  &&  currow > ref.lines[0])
       {
       ref_bfr = 1 ;
       currow -= ref.lines[0] ;
       }
-   else if (ref.cur_bfr == 1  &&  currow > ref.lines[1]) 
+   else if (ref.cur_bfr == 1  &&  currow > ref.lines[1])
       return ;
 
    //  read appropriate data into list-file struct.
    strcpy(lstr, ref.bfr[ref_bfr][currow].instr) ;
 
-   if (iptr->file == ' ') 
+   if (iptr->file == ' ')
       {
       _makepath(sfile, ildrive, ilpath, "interrup", "lst") ;
       strcpy(sname,"interrup.lst") ;
       }
-   else 
+   else
       {
       char c2s[5] ;
       c2s[0] = iptr->file ;
@@ -80,18 +79,18 @@ void process_list_file(int list_mode, char *save_file)
 
    //  open the file
    lfile = fopen(sfile, "rb") ;
-   if (lfile == NULL) 
+   if (lfile == NULL)
       error_exit(NO_READ_FILE, sfile) ;
 
    fill_list_buffers(loffset) ;  //  fill the list buffers
 
-   //  now, determine whether this is a "print topic" call 
+   //  now, determine whether this is a "print topic" call
    //  or a normal "display" call
-   if (list_mode == 1) 
+   if (list_mode == 1)
       {
       //  open the output file
       FILE* outfile = fopen(save_file, "wt") ;
-      if (outfile == NULL) 
+      if (outfile == NULL)
          {
          strupr(save_file) ;
          sprintf(tempstr, "cannot open %s", save_file) ;
@@ -107,10 +106,10 @@ void process_list_file(int list_mode, char *save_file)
       j=0 ;
       do {
          fprintf(outfile, "%s\n", list.bfr[ref_bfr][j].instr) ;
-         if (++j > list.lines[ref_bfr]) 
+         if (++j > list.lines[ref_bfr])
             {
             j = 0 ;
-            if (++ref_bfr == 2) 
+            if (++ref_bfr == 2)
                {
                fill_list_buffers(list.tlptr[1]) ;  //  refill the list buffers
                ref_bfr = 0 ;
@@ -139,12 +138,12 @@ void process_list_file(int list_mode, char *save_file)
    unsigned rtemp ;
    int count ;
    int done = 0 ;
-   while (!done) 
+   while (!done)
       {
       mark_cursor_line(ivideo.currow, SELECTED) ;
       unsigned indata = get_key() ;
       mark_cursor_line(ivideo.currow, MAIN_TEXT) ;
-      switch (indata) 
+      switch (indata)
          {
          case Key_UP:
             scroll_list_down() ;
@@ -153,7 +152,7 @@ void process_list_file(int list_mode, char *save_file)
          case Key_PGUP:
             rtemp = ivideo.currow ;
             ivideo.currow = DATA_TOP ;
-            for (j=0; j<window_rows; j++) 
+            for (j=0; j<window_rows; j++)
                scroll_list_down() ;
             ivideo.currow = rtemp ;
             break;
@@ -165,7 +164,7 @@ void process_list_file(int list_mode, char *save_file)
          case Key_PGDN:
             rtemp = ivideo.currow ;
             ivideo.currow = screen_rows - 1 ;
-            for (j=0; j<window_rows; j++) 
+            for (j=0; j<window_rows; j++)
                scroll_list_up() ;
             ivideo.currow = rtemp ;
             break;
@@ -189,18 +188,18 @@ void process_list_file(int list_mode, char *save_file)
             //  read one line and re-position file pointer to full line
             fsetpos(lfile, &loffset) ;
             count = seek_next_line(lfile) ;
-            if (count < 0) 
+            if (count < 0)
                error_exit(BAD_SEARCH, NULL) ;
             loffset += count ;
             fill_list_buffers(loffset) ;
 
             //  now, figure out which line is top of (end of screen)
-            if (list.lines[1] < window_rows) 
+            if (list.lines[1] < window_rows)
                {
                list.cur_bfr = 0 ;
                list.offset =  list.lines[0] + list.lines[1] - window_rows ;
                }
-            else 
+            else
                {
                list.cur_bfr = 1 ;
                list.offset = list.lines[1] - window_rows ;
@@ -224,7 +223,7 @@ void process_list_file(int list_mode, char *save_file)
          case Key_S: //  search for string
             if (message_read("Enter string to search for: ", srchstr) == 0)
                {
-               if (search_list_buffers() != 0) 
+               if (search_list_buffers() != 0)
                    search_list_file() ;
                }
             //  redraw current filename on screen
@@ -235,9 +234,9 @@ void process_list_file(int list_mode, char *save_file)
          case Key_F3:
          case Key_r:
          case Key_R: //  repeat last string search
-            if (strlen(srchstr) == 0) 
+            if (strlen(srchstr) == 0)
                message_show("There is no current search string") ;
-            else if (search_list_buffers() != 0) 
+            else if (search_list_buffers() != 0)
                 search_list_file() ;
             //  redraw current filename on screen
             dprints(0, 2, LOGO, list_header) ;
@@ -280,15 +279,15 @@ int search_list_buffers(void)
    unsigned sline = list.offset + (ivideo.currow - DATA_TOP) + 1 ;
    int srch_done ;
    //  first, search list.bfr0 if active
-   if (list.cur_bfr == 0) 
+   if (list.cur_bfr == 0)
       {
       srch_done = 0 ;
-      if (sline <= list.lines[0]) 
+      if (sline <= list.lines[0])
          {
-         while (!srch_done) 
+         while (!srch_done)
             {
             //  If string is found, update buffers and move cursor
-            if (strstri(list.bfr[0][sline].instr, srchstr) == 0) 
+            if (strstri(list.bfr[0][sline].instr, srchstr) == 0)
                {
                list.offset = sline ;
                //  I _think_ this is the correct position
@@ -301,7 +300,7 @@ int search_list_buffers(void)
                }
             //  string is not yet found; move along in buffer0
             //  if at end of buffer, exit and try buffer 1.
-            else if (++sline >= list.lines[0]) 
+            else if (++sline >= list.lines[0])
                {
                srch_done = 1 ;
                sline = 0 ;
@@ -309,20 +308,20 @@ int search_list_buffers(void)
             }  //  while not done searching
          }  //  if first search line actually IS in bfr0
       //  if search line lapses into bfr1, move there
-      else 
+      else
          {
          sline -= list.lines[0] ;
          }
       }
 
    //  then, search list.bfr1 if active, and nothing found in 0
-   if (list.lines[1] > 0) 
+   if (list.lines[1] > 0)
       {
       srch_done = 0 ;
-      while (!srch_done) 
+      while (!srch_done)
          {
          //  If string is found, update buffers and move cursor
-         if (strstri(list.bfr[1][sline].instr, srchstr) == 0) 
+         if (strstri(list.bfr[1][sline].instr, srchstr) == 0)
             {
             search.offset = sline ;
             list.cur_bfr = 1 ;
@@ -333,7 +332,7 @@ int search_list_buffers(void)
             }
          //  string is not yet found; move along in buffer1.
          //  if at end of buffer, exit and try other buffers.
-         else if (++sline >= list.lines[1]) 
+         else if (++sline >= list.lines[1])
             {
             srch_done = 1 ;
             sline = 0 ;
@@ -362,7 +361,7 @@ void search_list_file(void)
 
    //  fill the readbfr from list file
    unsigned rlines = fill_search_buffer(lfile) ;
-   if (rlines == 0) 
+   if (rlines == 0)
       {
       message_show("Your search string was not found") ;
       return ;
@@ -370,10 +369,10 @@ void search_list_file(void)
 
    unsigned sline = 0 ;
    int srch_done = 0 ;
-   while (!srch_done) 
+   while (!srch_done)
       {
       //  If string is found, update buffers and move cursor
-      if (strstri(search.bfr[sline].instr, srchstr) == 0) 
+      if (strstri(search.bfr[sline].instr, srchstr) == 0)
          {
          // read real data from beginning of current block
          fill_list_buffers(search.hdptr) ;
@@ -389,18 +388,18 @@ void search_list_file(void)
          }
       //  string is not yet found; move along in readbfr.
       //  if at end of buffer, read next buffer or fail.
-      else if (++sline >= rlines) 
+      else if (++sline >= rlines)
          {
          search.hdptr = search.tlptr ;
          rlines = fill_search_buffer(lfile) ;
-         if (rlines == 0) 
+         if (rlines == 0)
             {
             //  restore input-file position
             fsetpos(lfile, &oldpos) ;
             srch_done = -1 ;
             message_show("Your search string was not found") ;
             }
-         else 
+         else
             {
             sline = 0 ;
             }
@@ -412,7 +411,7 @@ void search_list_file(void)
 void scroll_list_down(void)
    {
    //  if cursor is NOT at top, move cursor
-   if (ivideo.currow > DATA_TOP) 
+   if (ivideo.currow > DATA_TOP)
       {
       ivideo.currow-- ;
       }
@@ -432,7 +431,7 @@ void scroll_list_down(void)
    //  if current buffer = 0, see if we're at beginning of file.
    //  if so, do nothing; otherwise, try to read back in buffer,
    //  after copying buffer 0 to buffer 1.
-   else if (list.hdptr[0] > 0) 
+   else if (list.hdptr[0] > 0)
       {
       //  copy buffer0 values to buffer1
 
@@ -449,7 +448,7 @@ void scroll_list_down(void)
 
       //  then compute and read new data into buffer0
       fill_list_bfr_rev() ; //  fill forward buffer
-      if (list.offset > 0) 
+      if (list.offset > 0)
          list.offset-- ;
       display_list_file() ;
       }
@@ -462,7 +461,7 @@ void scroll_list_up(void)
    unsigned end_line = list.offset + window_rows ; //  base-0
 
    //  if still onscreen, just move cursor
-   if (ivideo.currow+1 < screen_rows) 
+   if (ivideo.currow+1 < screen_rows)
       {
       ivideo.currow++ ;
       }
@@ -470,7 +469,7 @@ void scroll_list_up(void)
    //  end of screen...
    //  see if there's still room in buffer to move cursor
    else if (end_line < list.lines[list.cur_bfr])
-         //   ^base-0        ^base-1     
+         //   ^base-0        ^base-1
       {
       list.offset++ ;
       display_list_file() ;
@@ -479,22 +478,22 @@ void scroll_list_up(void)
    //  we are at end of buffer
 
    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-   //                      BUFFER 0                             
+   //                      BUFFER 0
    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-   else if (list.cur_bfr == 0) 
+   else if (list.cur_bfr == 0)
    //  If we're in buffer0, we should be able to slop over
    //  into buffer1, if there's any data in it.
       {
-      //  if we were previously in buffer0, but now (after     
-      //  adding one line) we don't fit in buffer0+buffer1,    
-      //  there were less than (screen_size) lines in buffer1, 
-      //  which means we're at end of file (otherwise, we      
-      //  would have read roughly 32Kbytes).                   
-      //                                                       
-      //  NOTE: we do not currently handle scrolling           
-      //        across multiple files.                         
-      //                                                       
-      if (end_line >= (list.lines[0] + list.lines[1])) 
+      //  if we were previously in buffer0, but now (after
+      //  adding one line) we don't fit in buffer0+buffer1,
+      //  there were less than (screen_size) lines in buffer1,
+      //  which means we're at end of file (otherwise, we
+      //  would have read roughly 32Kbytes).
+      //
+      //  NOTE: we do not currently handle scrolling
+      //        across multiple files.
+      //
+      if (end_line >= (list.lines[0] + list.lines[1]))
          {
          //  do nothing for now...
          //  Later, we'll add multiple-file support.
@@ -507,7 +506,7 @@ void scroll_list_up(void)
          list.cur_bfr = 1 ;
          display_list_file() ;
          }
-      //  otherwise, we're overlapping two files, 
+      //  otherwise, we're overlapping two files,
       //  which the list function supports internally.
       else
          {
@@ -517,22 +516,22 @@ void scroll_list_up(void)
       }
 
    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-   //                      BUFFER 1                             
+   //                      BUFFER 1
    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
    //  if NOT at end of buffer 1, update array offset and redraw
-   else if (end_line < list.lines[1]) 
-         //  ^base0      ^base1     
+   else if (end_line < list.lines[1])
+         //  ^base0      ^base1
       {
       list.offset++ ;
       display_list_file() ;
       }
-   //  if we reach end of buffer 1, 
+   //  if we reach end of buffer 1,
    //  copy buffer 1 to buffer 0 and see if
    //  there's more data to scroll into.
-   else 
+   else
       {
       back_up_list1() ;
-      if (list.lines[1] > 0) 
+      if (list.lines[1] > 0)
          {
          list.offset++ ;
          display_list_file() ;
@@ -566,11 +565,11 @@ void display_list_file(void)
            //     ^base-1            ^base-1             ^base-0
 
    //  if current buffer fits entirely onscreen
-   if (window_rows <= buffer_left) 
+   if (window_rows <= buffer_left)
       {
-      for (j=0; j<window_rows; j++) 
+      for (j=0; j<window_rows; j++)
          {
-         dprints(0, DATA_TOP+j, MAIN_TEXT, 
+         dprints(0, DATA_TOP+j, MAIN_TEXT,
             list.bfr[list.cur_bfr][list.offset+j].instr) ;
          }
       }
@@ -578,46 +577,46 @@ void display_list_file(void)
    //  Fill any unused lines with blank lines.
    else if (list.cur_bfr == 0)
       {
-      if (window_rows > (buffer_left + list.lines[1])) 
+      if (window_rows > (buffer_left + list.lines[1]))
          //  ^base1        ^base1         ^base1
          {
          //  draw remainder of buffer0
-         for (j=0; j<buffer_left; j++) 
+         for (j=0; j<buffer_left; j++)
             {
-            dprints(0, DATA_TOP+j, MAIN_TEXT, 
+            dprints(0, DATA_TOP+j, MAIN_TEXT,
                list.bfr[0][list.offset+j].instr) ;
             }
          //  draw all of buffer1
          unsigned new_top = DATA_TOP + buffer_left ;
-         for (j=0; j<list.lines[1]; j++) 
+         for (j=0; j<list.lines[1]; j++)
             {
             dprints(0, new_top++, MAIN_TEXT, list.bfr[1][j].instr) ;
             }
          //  draw blank lines
          spaces[80] = 0 ;
-         //for (j=new_top; j<screen_rows; j++) 
-         while (new_top < screen_rows) 
+         //for (j=new_top; j<screen_rows; j++)
+         while (new_top < screen_rows)
             {
             dprints(0, new_top++, MAIN_TEXT, spaces) ;
             }
          spaces[80] = ' ' ;
          }
-      else 
+      else
          {
-         for (j=0; j<buffer_left; j++) 
+         for (j=0; j<buffer_left; j++)
             {
-            dprints(0, DATA_TOP+j, MAIN_TEXT, 
+            dprints(0, DATA_TOP+j, MAIN_TEXT,
                list.bfr[0][list.offset+j].instr) ;
             }
-         for (j=0; j<(window_rows-buffer_left); j++) 
+         for (j=0; j<(window_rows-buffer_left); j++)
             {
-            dprints(0, DATA_TOP+buffer_left+j, MAIN_TEXT, 
+            dprints(0, DATA_TOP+buffer_left+j, MAIN_TEXT,
                     list.bfr[1][j].instr) ;
             }
          }
       }
    //  we're at end of buffer 1; are we at EOF??
-   else 
+   else
       {
       //  copy buffer1 to buffer0,
       //  then refill buffer 1.
@@ -643,13 +642,13 @@ unsigned fill_list_bfr(unsigned bfr_flag)
 
    //  fill the readbfr from list file
    unsigned rlines = fill_read_buffer(lfile) ;
-   if (rlines == 0) 
+   if (rlines == 0)
       return 0;
 
    //  now, translate the read buffer into the list-list buffer
    unsigned lcount = 0 ;   // output_buffer counter
    char *sptr = readptr ;
-   while (!done) 
+   while (!done)
       {
       unsigned slen = strlen(sptr) ;
 
@@ -663,17 +662,17 @@ unsigned fill_list_bfr(unsigned bfr_flag)
       //  copy data to list buffer.  strcpy() won't do because
       //  TABs have to be converted from the input files.
       //strcpy(list.bfr[bfr_flag][lcount].instr, sptr) ;
-      else 
+      else
          {
          char* cptr = sptr ;
          j = 0 ;
-         while (j < 80  &&  *cptr != 0) 
+         while (j < 80  &&  *cptr != 0)
             {
-            switch (*cptr) 
+            switch (*cptr)
                {
                case TAB:
                   do {
-                     if (j < 80) 
+                     if (j < 80)
                         {
                         list.bfr[bfr_flag][lcount].instr[j] = ' ' ;
                         }
@@ -690,14 +689,14 @@ unsigned fill_list_bfr(unsigned bfr_flag)
             }
 
          //  if input line is longer than 80 chars, skim ahead to EOL
-         if (j == 80) 
+         if (j == 80)
             {
             while (*cptr != 0)  cptr++ ;
             }
          else
             {
             //  pad short lines with spaces
-            while (j < 80) 
+            while (j < 80)
                {
                list.bfr[bfr_flag][lcount].instr[j++] = ' ' ;
                }
@@ -722,7 +721,7 @@ unsigned fill_list_bfr(unsigned bfr_flag)
       //  Determine if we are at end of input data (count),
       //  or if output buffer is full (lcount)
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-      if (lcount == list_lines  ||  count == rlines) 
+      if (lcount == list_lines  ||  count == rlines)
          {
          done = 1 ;
          //  set tail-pointer variable in current list struct
@@ -746,39 +745,39 @@ void fill_list_bfr_rev(void)
    //  make a copy of current line before overwriting it,
    //  so we can find it again afterwards
    strcpy(oldstr, list.bfr[1][list.offset].instr) ;
-   if (strlen(oldstr) == 0) 
+   if (strlen(oldstr) == 0)
       error_exit(BAD_FORMAT, NULL) ;
 
    //  figure out how far to back up the read pointer
-   fpos_t pos = IFF   (list.hdptr[0] > REV_SIZE) 
+   fpos_t pos = IFF   (list.hdptr[0] > REV_SIZE)
                 THENN (list.hdptr[0] - REV_SIZE)
                 ELSSE 0 ;
 
    //  now read one line and re-position file pointer to full line
    //  (if we're at beginning of file, don't bother)
-   if (pos > 0) 
+   if (pos > 0)
       {
       fsetpos(lfile, &pos) ;
       icount = seek_next_line(lfile) ;
-      if (icount < 0) 
+      if (icount < 0)
          error_exit(BAD_SEARCH, NULL) ;
       pos += icount ;
       }
    fill_list_buffers(pos) ;
 
-   //  now that new buffers have been read, 
+   //  now that new buffers have been read,
    //  seek to the current line and update list.offset
    count = 0 ;
    done = 0 ;
-   while (!done) 
+   while (!done)
       {
-      if (strcmp(oldstr, list.bfr[0][count].instr) == 0) 
+      if (strcmp(oldstr, list.bfr[0][count].instr) == 0)
          {
          list.offset = count ;
          done = 1 ;
          }
       else if (++count >= list.lines[0])
-         error_exit(BAD_SEARCH, NULL) ; 
+         error_exit(BAD_SEARCH, NULL) ;
       }
    }
 
