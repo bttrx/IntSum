@@ -30,7 +30,7 @@ void process_list_file(int list_mode, char *save_file)
    {
    char sfile[128], sname[13] ;
    char lstr[sizeof(sum_conv)+1] ;
-   unsigned j, ref_bfr ;
+   unsigned i, j, ref_bfr ;
 
    int_sum_line *iptr = (int_sum_line *) lstr ;
 
@@ -105,6 +105,17 @@ void process_list_file(int list_mode, char *save_file)
       ref_bfr = 0 ;  //  overloading this variable
       j=0 ;
       do {
+         //  strip trailing blanks by walking down until first non-blank
+         i = strlen(list.bfr[ref_bfr][j].instr) - 1 ;  //  to be safe, but
+                                                       //  currently every
+                                                       //  line in buffer
+                                                       //  has 80 chars
+                                                       //  exactly
+         while ((i > 0) && (list.bfr[ref_bfr][j].instr[i] == ' '))
+            {
+            list.bfr[ref_bfr][j].instr[i--] = '\0' ;
+            }
+
          fprintf(outfile, "%s\n", list.bfr[ref_bfr][j].instr) ;
          if (++j > list.lines[ref_bfr])
             {
