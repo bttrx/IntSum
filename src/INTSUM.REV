@@ -16,6 +16,7 @@ Version 1.8, released 2021-02-06
     -> Add NC 3.0-inspired color scheme to INTSUM.INI.
     -> Exported topics will no longer have trailing blanks.
     -> Remove old license text from INTSUM.TXT and help screen.
+       (Also fixes GitHub URL not showing on help screen.)
     -> Add section "Keyboard commands" to INTSUM.TXT.
 
 Version 1.7, released 2021-01-29
