@@ -13,6 +13,12 @@ For documentation see `SRC/INTSUM.TXT`.
 
 For changes see `SRC/INTSUM.REV`.
 
-## Screenshot
+## Screenshots
 
-![IntSum version 1.7 screenshot](assets/screenshot.png)
+### Default colors
+
+![IntSum version 1.8 screenshot (default colors)](assets/screenshots/intsum18.png)
+
+### NC 3.0-inspired colors
+
+![IntSum version 1.8 screenshot (NC3-inspired colors)](assets/screenshots/intsum18_nc3.png)
