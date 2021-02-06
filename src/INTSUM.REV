@@ -9,7 +9,7 @@
               Written by Daniel D. Miller (derelict@netcom.com)
               Updated by Robert Riebisch (rr@bttr-software.de)
 
-Version 1.8
+Version 1.8, released 2021-02-06
     -> Fix sometimes displaying garbage on "Enter filename to save to"
        prompt on startup.
     -> Make use of, so far unused, INI file BORDER setting.
