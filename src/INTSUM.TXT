@@ -46,6 +46,17 @@ which follow the same file format.  It has the following features:
        needs to be in the same directory as the Interrupt List files.
 
 ===============================================================================
+                             Keyboard commands
+
+       F1, h : Help screen
+       F2, s : Search for string
+       F3, r : Repeat last search
+       F4, t : Save selected topic to a file. (from Ref list only)
+       Enter : In reference listing, display detained info on current item.
+       Esc   : Exit from program (in reference listing),
+               Return to reference listing (in detail listing)
+
+===============================================================================
                             Combined-file support
 
 When IntSum prepares to create a new index file (because INTERRUP.IDX is
