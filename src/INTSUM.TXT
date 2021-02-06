@@ -46,14 +46,6 @@ which follow the same file format.  It has the following features:
        needs to be in the same directory as the Interrupt List files.
 
 ===============================================================================
-
-INTSUM.EXE is hereby released as freeware, though I retain the copyright on
-it.  This means you may distribute it anywhere you wish, to anyone you wish,
-and use it for any private or commercial purpose, but you may not charge
-money for it (except for reasonable media distribution fees), nor may you
-modify the program in any way.
-
-===============================================================================
                             Combined-file support
 
 When IntSum prepares to create a new index file (because INTERRUP.IDX is
