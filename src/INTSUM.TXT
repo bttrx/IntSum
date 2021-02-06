@@ -7,7 +7,7 @@
               Written by Daniel D. Miller (derelict@netcom.com)
               Updated by Robert Riebisch (rr@bttr-software.de)
 
-                       Version 1.7, released 2021-01-29
+                       Version 1.8, released 2021-02-06
 
 ===============================================================================
 
@@ -47,10 +47,10 @@ which follow the same file format.  It has the following features:
 
 ===============================================================================
 
-INTSUM.EXE is hereby released as freeware, though I retain the copyright on 
+INTSUM.EXE is hereby released as freeware, though I retain the copyright on
 it.  This means you may distribute it anywhere you wish, to anyone you wish,
 and use it for any private or commercial purpose, but you may not charge
-money for it (except for reasonable media distribution fees), nor may you 
+money for it (except for reasonable media distribution fees), nor may you
 modify the program in any way.
 
 ===============================================================================
@@ -64,7 +64,7 @@ otherwise, the index is built from INTERRUP.A and its brethren.
 ===============================================================================
                             DOS PATH utilization
 
-IntSum now searches for the interrupt_list files, index, INI file, and any 
+IntSum now searches for the interrupt_list files, index, INI file, and any
 other files in the directory where INTSUM.EXE was executed.  This means you
 can now path to IntSum and execute it without having to actually change
 to that directory.  For this to work, of course, IntSum must be in the
@@ -78,7 +78,7 @@ path.
 ===============================================================================
                              Configuration file
 
-The first time that IntSum is executed, it will create a configuration file 
+The first time that IntSum is executed, it will create a configuration file
 called INTSUM.INI in the directory where INTSUM.EXE is located.  This file
 contains all the colors used by the program.  Once the file is created, you
 can edit it with any text editor, and set them to whatever colors you like.
