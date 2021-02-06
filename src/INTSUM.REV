@@ -15,7 +15,7 @@ Version 1.8, released 2021-02-06
     -> Make use of, so far unused, INI file BORDER setting.
     -> Add NC 3.0-inspired color scheme to INTSUM.INI.
     -> Exported topics will no longer have trailing blanks.
-    -> Remove old license text from INTSUM.TXT.
+    -> Remove old license text from INTSUM.TXT and help screen.
     -> Add section "Keyboard commands" to INTSUM.TXT.
 
 Version 1.7, released 2021-01-29
