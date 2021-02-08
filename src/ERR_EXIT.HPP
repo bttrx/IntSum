@@ -1,10 +1,10 @@
 //*********************************************************
-//  ERR_EXIT.HPP - Header for semi-standard error handler  
-//                                                         
-//  Written by:   Daniel D. Miller                         
-//                                                         
-//  Last Update:  06-23-95 08:23am                         
-//                                                         
+//  ERR_EXIT.HPP - Header for semi-standard error handler
+//
+//  Written by:   Daniel D. Miller
+//
+//  Last Update:  06-23-95 08:23am
+//
 //*********************************************************
 
 enum error_code {
