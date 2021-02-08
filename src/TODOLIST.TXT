@@ -19,7 +19,7 @@ FEATURES
         - Whole-word searches
         - Case-sensitive searches
         - Ability to search for an interrupt number.  Right now you have to
-          guess how the desired interrupt number is represented in the 
+          guess how the desired interrupt number is represented in the
           reference list, and search for it as a string.
   Of course, all these options need to be stored in INTSUM.INI!!
 
@@ -29,7 +29,7 @@ FEATURES
 - Cross-referencing would be very nice; to be able to directly follow those
   "See Also" references...
 
-- The List display cannot scroll into subsequent/previous files, if the 
+- The List display cannot scroll into subsequent/previous files, if the
   interrupt list is divided up into subfiles.
 
 
