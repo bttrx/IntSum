@@ -1,13 +1,15 @@
 
                   INTSUM.EXE - Interrupt Summary and Viewer
                        For Ralf Brown's Interrupt List
-                     Copyright (c) 1995 Daniel D. Miller
-                     Copyright (c) 2021 Robert Riebisch
 
+    Copyright (c) 1994-1996 Daniel D. Miller <derelict@netcom.com>
+    Copyright (c) 2021 Robert Riebisch <rr@bttr-software.de>
+
+    Usage of the works is permitted under the terms of the 0-clause
+    BSD license. See `LICENSE.TXT' for details.
+
+===============================================================================
                          "What's New" revision list
-
-              Written by Daniel D. Miller (derelict@netcom.com)
-              Updated by Robert Riebisch (rr@bttr-software.de)
 
 Version 1.8, released 2021-02-06
     -> Fix sometimes displaying garbage on "Enter filename to save to"

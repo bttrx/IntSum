@@ -1,29 +1,15 @@
 
                   INTSUM.EXE - Interrupt Summary and Viewer
                        For Ralf Brown's Interrupt List
-                     Copyright (c) 1995 Daniel D. Miller
-                     Copyright (c) 2021 Robert Riebisch
 
-              Written by Daniel D. Miller (derelict@netcom.com)
-              Updated by Robert Riebisch (rr@bttr-software.de)
+    Copyright (c) 1994-1996 Daniel D. Miller <derelict@netcom.com>
+    Copyright (c) 2021 Robert Riebisch <rr@bttr-software.de>
 
-                       Version 1.8, released 2021-02-06
-
-===============================================================================
-
-This program, IntSum.EXE, and its associated source-code files, are hereby
-released to the public domain, although I retain the copyright on the
-existing source code.  You may modify and redistribute the source and
-executables in any form that you wish, anywhere you wish, for any purpose.
-I would be grateful if my name was retained in this document and in the
-source-code files as the original author.
-
-Note that effective this date, 10-13-96, I am no longer supporting or
-maintaining this program.  I've switched to Windows 95 now, and the
-Windows Help version of the Interrupt List is vastly more powerful than
-anything I could ever get motivated to do with this.
+    Usage of the works is permitted under the terms of the 0-clause
+    BSD license. See `LICENSE.TXT' for details.
 
 ===============================================================================
+                                   About
 
 IntSum is a character-mode MSDOS program for viewing the Interrupt List.
 It supports Release 45 and later, and will also work with earlier releases
@@ -44,6 +30,8 @@ which follow the same file format.  It has the following features:
        specify a separate directory for the Interrupt List files.
        Thus, INTSUM.* may be kept anywhere in your path; it no longer
        needs to be in the same directory as the Interrupt List files.
+
+See file INTSUM.REV for the "What's New" revision list.
 
 ===============================================================================
                              Keyboard commands
