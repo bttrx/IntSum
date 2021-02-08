@@ -17,8 +17,16 @@ For changes see [`SRC/INTSUM.REV`](src/INTSUM.REV).
 
 ### Default colors
 
-![IntSum version 1.8 screenshot (default colors)](assets/screenshots/intsum18.png)
+![IntSum version 1.9 screenshot (default colors)](assets/screenshots/intsum19.png)
 
 ### NC 3.0-inspired colors
 
-![IntSum version 1.8 screenshot (NC3-inspired colors)](assets/screenshots/intsum18_nc3.png)
+![IntSum version 1.9 screenshot (NC 3.0-inspired colors)](assets/screenshots/intsum19_nc3.png)
+
+### Detail listing
+
+![IntSum version 1.9 screenshot (detail listing)](assets/screenshots/intsum19_nc3_list.png)
+
+### Help screen
+
+![IntSum version 1.9 screenshot (help screen)](assets/screenshots/intsum19_nc3_help.png)
