@@ -11,7 +11,7 @@
 ===============================================================================
                          "What's New" revision list
 
-Version 1.9
+Version 1.9, released 2021-02-08
     -> Change from custom public-domain license to public-domain-
        equivalent BSD Zero Clause license.
     -> Remake help screen accordingly.
