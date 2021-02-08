@@ -11,6 +11,10 @@
 ===============================================================================
                          "What's New" revision list
 
+Version 1.9
+    -> Change from proprietary public-domain license to public-domain-
+       equivalent BSD Zero Clause license.
+
 Version 1.8, released 2021-02-06
     -> Fix sometimes displaying garbage on "Enter filename to save to"
        prompt on startup.
