@@ -83,3 +83,8 @@ The INI file also contains a line LIST_DIR, which allows the user to
 specify a separate path for the Interrupt List files, so INTSUM does not
 need to be in the same directory as Interrupt List distribution.
 
+===============================================================================
+                             Technical support
+
+Please visit <https://github.com/bttrx/IntSum> for help or updates.
+
