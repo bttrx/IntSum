@@ -486,7 +486,6 @@ void build_index(void)
    if (idxfile == NULL)
       error_exit(NO_WRITE_FILE, "INTERRUP.IDX") ;
 
-   puts(Version) ;
    puts("Building index file... this will take a couple of minutes") ;
 
    _makepath(lname, ildrive, ilpath, "interrup", "lst") ;
