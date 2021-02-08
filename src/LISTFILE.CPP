@@ -45,7 +45,7 @@ void process_list_file(int list_mode, char *save_file)
 
    //  figure out which line in ref file was selected
    ref_bfr = (unsigned) ref.cur_bfr ;
-   unsigned currow = ref.offset + ivideo.currow - DATA_TOP ;
+   unsigned currow = ref.offset + ivideo.currow - DATA_TOP_ROW ;
    if (currow > (ref.lines[0] + ref.lines[1]))
       return ;
    if (ref.cur_bfr == 0  &&  currow > ref.lines[0])
@@ -141,7 +141,7 @@ void process_list_file(int list_mode, char *save_file)
    dprints(1, 2, FILENAME, sname) ;
 
    //  display the first buffer of data
-   ivideo.currow = DATA_TOP ;
+   ivideo.currow = DATA_TOP_ROW ;
    display_list_file() ;
 
    //  list-file keyboard handler
@@ -162,7 +162,7 @@ void process_list_file(int list_mode, char *save_file)
 
          case Key_PGUP:
             rtemp = ivideo.currow ;
-            ivideo.currow = DATA_TOP ;
+            ivideo.currow = DATA_TOP_ROW ;
             for (j=0; j<window_rows; j++)
                scroll_list_down() ;
             ivideo.currow = rtemp ;
@@ -185,7 +185,7 @@ void process_list_file(int list_mode, char *save_file)
             fill_list_buffers(loffset) ;
             list.offset = 0 ;
             list.cur_bfr = 0 ;
-            ivideo.currow = DATA_TOP ;
+            ivideo.currow = DATA_TOP_ROW ;
             display_list_file() ;
             break;
 
@@ -216,7 +216,7 @@ void process_list_file(int list_mode, char *save_file)
                list.offset = list.lines[1] - window_rows ;
                }
 
-            ivideo.currow = DATA_TOP ;
+            ivideo.currow = DATA_TOP_ROW ;
             display_list_file() ;
             break;
 
@@ -287,7 +287,7 @@ void fill_list_buffers(fpos_t pos)
 //*****************************************************************
 int search_list_buffers(void)
    {
-   unsigned sline = list.offset + (ivideo.currow - DATA_TOP) + 1 ;
+   unsigned sline = list.offset + (ivideo.currow - DATA_TOP_ROW) + 1 ;
    int srch_done ;
    //  first, search list.bfr0 if active
    if (list.cur_bfr == 0)
@@ -305,7 +305,7 @@ int search_list_buffers(void)
                search.offset = sline ;
                list.offset = sline ;
 
-               ivideo.currow = DATA_TOP ;
+               ivideo.currow = DATA_TOP_ROW ;
                display_list_file() ;
                return 0;
                }
@@ -337,7 +337,7 @@ int search_list_buffers(void)
             search.offset = sline ;
             list.cur_bfr = 1 ;
             list.offset = sline ;
-            ivideo.currow = DATA_TOP ;
+            ivideo.currow = DATA_TOP_ROW ;
             display_list_file() ;
             return 0;
             }
@@ -393,7 +393,7 @@ void search_list_file(void)
          list.offset = sline ;
          list.cur_bfr = 0 ;
 
-         ivideo.currow = DATA_TOP ;
+         ivideo.currow = DATA_TOP_ROW ;
          display_list_file() ;
          srch_done = 1 ;
          }
@@ -422,7 +422,7 @@ void search_list_file(void)
 void scroll_list_down(void)
    {
    //  if cursor is NOT at top, move cursor
-   if (ivideo.currow > DATA_TOP)
+   if (ivideo.currow > DATA_TOP_ROW)
       {
       ivideo.currow-- ;
       }
@@ -580,7 +580,7 @@ void display_list_file(void)
       {
       for (j=0; j<window_rows; j++)
          {
-         dprints(0, DATA_TOP+j, MAIN_TEXT,
+         dprints(0, DATA_TOP_ROW+j, MAIN_TEXT,
             list.bfr[list.cur_bfr][list.offset+j].instr) ;
          }
       }
@@ -594,11 +594,11 @@ void display_list_file(void)
          //  draw remainder of buffer0
          for (j=0; j<buffer_left; j++)
             {
-            dprints(0, DATA_TOP+j, MAIN_TEXT,
+            dprints(0, DATA_TOP_ROW+j, MAIN_TEXT,
                list.bfr[0][list.offset+j].instr) ;
             }
          //  draw all of buffer1
-         unsigned new_top = DATA_TOP + buffer_left ;
+         unsigned new_top = DATA_TOP_ROW + buffer_left ;
          for (j=0; j<list.lines[1]; j++)
             {
             dprints(0, new_top++, MAIN_TEXT, list.bfr[1][j].instr) ;
@@ -616,12 +616,12 @@ void display_list_file(void)
          {
          for (j=0; j<buffer_left; j++)
             {
-            dprints(0, DATA_TOP+j, MAIN_TEXT,
+            dprints(0, DATA_TOP_ROW+j, MAIN_TEXT,
                list.bfr[0][list.offset+j].instr) ;
             }
          for (j=0; j<(window_rows-buffer_left); j++)
             {
-            dprints(0, DATA_TOP+buffer_left+j, MAIN_TEXT,
+            dprints(0, DATA_TOP_ROW+buffer_left+j, MAIN_TEXT,
                     list.bfr[1][j].instr) ;
             }
          }

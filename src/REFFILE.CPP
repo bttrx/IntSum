@@ -36,7 +36,7 @@ void fill_ref_buffers(fpos_t pos)
 //*****************************************************************
 int search_ref_buffers(char *srchstr)
    {
-   unsigned sline = ref.offset + (ivideo.currow - DATA_TOP) + 1 ;
+   unsigned sline = ref.offset + (ivideo.currow - DATA_TOP_ROW) + 1 ;
    int srch_done ;
    //  first, search ref.bfr0 if active
    if (ref.cur_bfr == 0)
@@ -58,7 +58,7 @@ int search_ref_buffers(char *srchstr)
                search.offset = sline ;
                ref.offset = sline ;
 
-               ivideo.currow = DATA_TOP ;
+               ivideo.currow = DATA_TOP_ROW ;
                display_ref_file() ;
                return 0;
                }
@@ -85,7 +85,7 @@ int search_ref_buffers(char *srchstr)
             search.offset = sline ;
             ref.cur_bfr = 1 ;
             ref.offset = sline ;
-            ivideo.currow = DATA_TOP ;
+            ivideo.currow = DATA_TOP_ROW ;
             display_ref_file() ;
             return 0;
             }
@@ -143,7 +143,7 @@ void search_ref_file(char *srchstr)
          ref.offset = sline ;
          ref.cur_bfr = 0 ;
 
-         ivideo.currow = DATA_TOP ;
+         ivideo.currow = DATA_TOP_ROW ;
          display_ref_file() ;
          srch_done = 1 ;
          }
@@ -172,7 +172,7 @@ void search_ref_file(char *srchstr)
 void scroll_page_down(void)
    {
    //  if cursor is NOT at top, move cursor
-   if (ivideo.currow > DATA_TOP)
+   if (ivideo.currow > DATA_TOP_ROW)
       {
       ivideo.currow-- ;
       }
@@ -334,7 +334,7 @@ void display_ref_file(void)
       {
       for (j=0; j<window_rows; j++)
          {
-         dprints(0, DATA_TOP+j, MAIN_TEXT,
+         dprints(0, DATA_TOP_ROW+j, MAIN_TEXT,
             ref.bfr[ref.cur_bfr][ref.offset+j].idx.data) ;
          }
       }
@@ -349,11 +349,11 @@ void display_ref_file(void)
          //  draw remainder of buffer0
          for (j=0; j<buffer_left; j++)
             {
-            dprints(0, DATA_TOP+j, MAIN_TEXT,
+            dprints(0, DATA_TOP_ROW+j, MAIN_TEXT,
                ref.bfr[0][ref.offset+j].idx.data) ;
             }
          //  draw all of buffer1
-         new_top = DATA_TOP + buffer_left ;
+         new_top = DATA_TOP_ROW + buffer_left ;
          for (j=0; j<ref.lines[1]; j++)
             {
             dprints(0, new_top++, MAIN_TEXT, ref.bfr[1][j].idx.data) ;
@@ -370,12 +370,12 @@ void display_ref_file(void)
          {
          for (j=0; j<buffer_left; j++)
             {
-            dprints(0, DATA_TOP+j, MAIN_TEXT,
+            dprints(0, DATA_TOP_ROW+j, MAIN_TEXT,
                ref.bfr[0][ref.offset+j].idx.data) ;
             }
          for (j=0; j<(window_rows-buffer_left); j++)
             {
-            dprints(0, DATA_TOP+buffer_left+j, MAIN_TEXT,
+            dprints(0, DATA_TOP_ROW+buffer_left+j, MAIN_TEXT,
                ref.bfr[1][j].idx.data) ;
             }
          }

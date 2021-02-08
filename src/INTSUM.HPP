@@ -175,10 +175,11 @@ extern uchar HELP_TEXT ;
 //*****************************************************************
 //  display structs
 //*****************************************************************
-extern const unsigned DATA_TOP ;
+#define DATA_TOP_ROW 2
+
 struct vidptr
    {
-   unsigned currow ;    //  screen offset from DATA_TOP
+   unsigned currow ;    //  screen offset from DATA_TOP_ROW
    } ;
 extern vidptr ivideo ;
 

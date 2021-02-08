@@ -36,7 +36,7 @@ main(int argc, char** argv)
    //  calculate video parameters
    char_attr = get_char_attr() ;
    get_vsize() ;
-   window_rows = screen_rows - DATA_TOP ; //  base-1
+   window_rows = screen_rows - DATA_TOP_ROW ; //  base-1
    select_video_seg(0) ;   // auto-detect video segment
 
    //  initialize the path for IntList files,
@@ -142,7 +142,7 @@ main(int argc, char** argv)
             fill_ref_buffers(pos) ;
             ref.offset = 0 ;
             ref.cur_bfr = 0 ;
-            ivideo.currow = DATA_TOP ;
+            ivideo.currow = DATA_TOP_ROW ;
             display_ref_file() ;
             break;
 
@@ -175,13 +175,13 @@ main(int argc, char** argv)
                ref.offset = ref.lines[1] - window_rows ;
                }
 
-            ivideo.currow = DATA_TOP ;
+            ivideo.currow = DATA_TOP_ROW ;
             display_ref_file() ;
             break;
 
          case Key_PGUP:
             rtemp = ivideo.currow ;
-            ivideo.currow = DATA_TOP ;
+            ivideo.currow = DATA_TOP_ROW ;
             for (j=0; j<window_rows; j++)
                scroll_page_down() ;
             ivideo.currow = rtemp ;

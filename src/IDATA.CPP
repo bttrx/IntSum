@@ -75,8 +75,7 @@ char ildrive[4] ;
 //*****************************************************************
 //  display structs
 //*****************************************************************
-const unsigned DATA_TOP = 4 ;
-vidptr ivideo = { DATA_TOP } ;
+vidptr ivideo = { DATA_TOP_ROW } ;
 
 unsigned window_rows ;  //  data lines, not counting header
 
