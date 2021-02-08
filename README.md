@@ -9,9 +9,9 @@ part of `inter61e.zip` ("utility programs").
 
 This is an updated version by Robert Riebisch.
 
-For documentation see `SRC/INTSUM.TXT`.
+For documentation see [`SRC/INTSUM.TXT`](src/INTSUM.TXT).
 
-For changes see `SRC/INTSUM.REV`.
+For changes see [`SRC/INTSUM.REV`](src/INTSUM.REV).
 
 ## Screenshots
 
