@@ -10,8 +10,6 @@
 
 #define  cur_version "1.9"
 
-#define Version   "  Interrupt Summary Version " cur_version ", by Daniel D. Miller, Copyright (c) 1995/2021   "
-
 // #include <memcheck.h>
 
 #define uchar  unsigned char
@@ -191,7 +189,6 @@ extern FILE* index ;
 //  screen text
 //*****************************************************************
 extern char* logo ;
-extern char* dividers ;
 extern char* header ;
 extern char* dividerd ;
 extern char* list_header ;

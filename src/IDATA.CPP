@@ -84,9 +84,6 @@ FILE* index ;
 //*****************************************************************
 //  screen text
 //*****************************************************************
-char* logo = Version ;
-char* dividers =
-   "컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴" ;
 char* header =
    "INT AH AL                     Description                     Press F1 for help " ;
 char* dividerd =
