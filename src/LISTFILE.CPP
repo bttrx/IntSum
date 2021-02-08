@@ -34,8 +34,8 @@ void process_list_file(int list_mode, char *save_file)
 
    int_sum_line *iptr = (int_sum_line *) lstr ;
 
-   dprints(0, 2, LOGO, list_header) ;
-   dprints(0, 3, BORDER, list_dividerd) ;
+   dprints(0, 0, LOGO, list_header) ;
+   dprints(0, 1, BORDER, list_dividerd) ;
 
    //  initialize list-file variables which are not
    //  otherwise later set up.
@@ -96,8 +96,8 @@ void process_list_file(int list_mode, char *save_file)
          sprintf(tempstr, "cannot open %s", save_file) ;
          message_show(tempstr) ;
          fclose(lfile) ;
-         dprints(0, 2, LOGO, header) ;
-         dprints(0, 3, BORDER, dividerd) ;
+         dprints(0, 0, LOGO, header) ;
+         dprints(0, 1, BORDER, dividerd) ;
          return ;
          }
 
@@ -132,13 +132,13 @@ void process_list_file(int list_mode, char *save_file)
       //  close files and exit
       fclose(outfile) ;
       fclose(lfile) ;
-      dprints(0, 2, LOGO, header) ;
-      dprints(0, 3, BORDER, dividerd) ;
+      dprints(0, 0, LOGO, header) ;
+      dprints(0, 1, BORDER, dividerd) ;
       return ;
       }
 
    //  display current filename on screen
-   dprints(1, 2, FILENAME, sname) ;
+   dprints(1, 0, FILENAME, sname) ;
 
    //  display the first buffer of data
    ivideo.currow = DATA_TOP_ROW ;
@@ -225,7 +225,7 @@ void process_list_file(int list_mode, char *save_file)
          case Key_H: //  display help screen
             display_help() ;
             display_logo() ;
-            dprints(0, 2, LOGO, list_header) ;
+            dprints(0, 0, LOGO, list_header) ;
             display_list_file() ;
             break;
 
@@ -238,8 +238,8 @@ void process_list_file(int list_mode, char *save_file)
                    search_list_file() ;
                }
             //  redraw current filename on screen
-            dprints(0, 2, LOGO, list_header) ;
-            dprints(1, 2, FILENAME, sname) ;
+            dprints(0, 0, LOGO, list_header) ;
+            dprints(1, 0, FILENAME, sname) ;
             break;
 
          case Key_F3:
@@ -250,14 +250,14 @@ void process_list_file(int list_mode, char *save_file)
             else if (search_list_buffers() != 0)
                 search_list_file() ;
             //  redraw current filename on screen
-            dprints(0, 2, LOGO, list_header) ;
-            dprints(1, 2, FILENAME, sname) ;
+            dprints(0, 0, LOGO, list_header) ;
+            dprints(1, 0, FILENAME, sname) ;
             break;
 
          case Key_ESC:
             fclose(lfile) ;
-            dprints(0, 2, LOGO, header) ;
-            dprints(0, 3, BORDER, dividerd) ;
+            dprints(0, 0, LOGO, header) ;
+            dprints(0, 1, BORDER, dividerd) ;
             done = 1 ;
             break;
 
