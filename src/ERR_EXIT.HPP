@@ -1,11 +1,12 @@
-//*********************************************************
+//********************************************************************
 //  ERR_EXIT.HPP - Header for semi-standard error handler
 //
-//  Written by:   Daniel D. Miller
+//  Copyright (c) 1995-1996 Daniel D. Miller <derelict@netcom.com>
+//  Copyright (c) 2021 Robert Riebisch <rr@bttr-software.de>
 //
-//  Last Update:  06-23-95 08:23am
-//
-//*********************************************************
+//  Usage of the works is permitted under the terms of the 0-clause
+//  BSD license. See `LICENSE.TXT' for details.
+//********************************************************************
 
 enum error_code {
 USAGE=0,

@@ -1,7 +1,12 @@
-#***********************************************************
-#  INTSUM.MAK
-#  Makefile for Interrupt Summary searching program
-#***********************************************************
+#*********************************************************************
+#  INTSUM.MAK - Makefile for Interrupt Summary searching program
+#
+#  Copyright (c) 1995-1996 Daniel D. Miller <derelict@netcom.com>
+#  Copyright (c) 2021 Robert Riebisch <rr@bttr-software.de>
+#
+#  Usage of the works is permitted under the terms of the 0-clause
+#  BSD license. See `LICENSE.TXT' for details.
+#*********************************************************************
 
 #  Comment out this line to remove debug information
 # debug=1

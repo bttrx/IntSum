@@ -1,13 +1,13 @@
 //********************************************************************
+//  CONFIG.CPP - INI-file handling routines
 //
-//  CONFIG.CPP -  INI-file handling routines
+//  Copyright (c) 1995-1996 Daniel D. Miller <derelict@netcom.com>
+//  Copyright (c) 2021 Robert Riebisch <rr@bttr-software.de>
 //
-//  Copyright (c) 1996 Daniel D. Miller
-//  Copyright (c) 2021 Robert Riebisch
-//
-//  Compile with makefile
-//
+//  Usage of the works is permitted under the terms of the 0-clause
+//  BSD license. See `LICENSE.TXT' for details.
 //********************************************************************
+
 #include <stdio.h>
 #include <stdlib.h>     //  strtol(), _splitpath(), _makepath()
 #include <string.h>

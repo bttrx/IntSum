@@ -1,10 +1,11 @@
 //********************************************************************
 //  INTSUM.HPP - Data and function declarations for INTSUM app.
 //
-//  Written by:   Daniel D. Miller, Robert Riebisch
+//  Copyright (c) 1995-1996 Daniel D. Miller <derelict@netcom.com>
+//  Copyright (c) 2021 Robert Riebisch <rr@bttr-software.de>
 //
-//  Compile with makefile
-//
+//  Usage of the works is permitted under the terms of the 0-clause
+//  BSD license. See `LICENSE.TXT' for details.
 //********************************************************************
 
 #define  cur_version "1.8"

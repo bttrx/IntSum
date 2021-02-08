@@ -1,12 +1,11 @@
 //********************************************************************
 //  REFFILE.CPP - Handle RefFile display, searching, etc.
 //
-//  Copyright (c) 1996 Daniel D. Miller
+//  Copyright (c) 1995-1996 Daniel D. Miller <derelict@netcom.com>
+//  Copyright (c) 2021 Robert Riebisch <rr@bttr-software.de>
 //
-//  Last Update:  09-04-95 11:18pm
-//
-//  Compile with makefile
-//
+//  Usage of the works is permitted under the terms of the 0-clause
+//  BSD license. See `LICENSE.TXT' for details.
 //********************************************************************
 
 #include <stdio.h>

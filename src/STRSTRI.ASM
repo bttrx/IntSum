@@ -1,11 +1,13 @@
-;*****************************************************************
+;*********************************************************************
 ;  STRSTRI.ASM - Case-insensitive version of strstr() from
 ;                standard C library.
 ;
-;  Copyright (c) 1996 Daniel D. Miller
+;  Copyright (c) 1995-1996 Daniel D. Miller <derelict@netcom.com>
+;  Copyright (c) 2021 Robert Riebisch <rr@bttr-software.de>
 ;
-;  Last Update: 07-23-95 11:36pm
-;*****************************************************************
+;  Usage of the works is permitted under the terms of the 0-clause
+;  BSD license. See `LICENSE.TXT' for details.
+;*********************************************************************
 
         .model  compact,c
 

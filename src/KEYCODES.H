@@ -1,10 +1,12 @@
-//*********************************************************
+//********************************************************************
 //  KEYCODES.H - BIOS scan codes for keyboard
 //
-//  Compiled by:  Daniel D. Miller
-//  Last Update:  August 23, 1994
+//  Copyright (c) 1994-1996 Daniel D. Miller <derelict@netcom.com>
+//  Copyright (c) 2021 Robert Riebisch <rr@bttr-software.de>
 //
-//*********************************************************
+//  Usage of the works is permitted under the terms of the 0-clause
+//  BSD license. See `LICENSE.TXT' for details.
+//********************************************************************
 
 #define  Key_F1         0x3B00
 #define  Key_ShF1       0x5400

@@ -1,10 +1,13 @@
-;*****************************************************************
+;*********************************************************************
 ;  DVIDEO.ASM - Video functions for INTSUM.EXE
 ;
-;  Copyright (c) 1996 Daniel D. Miller
+;  Copyright (c) 1995-1996 Daniel D. Miller <derelict@netcom.com>
+;  Copyright (c) 2021 Robert Riebisch <rr@bttr-software.de>
 ;
-;  Last Update: 10-14-95 11:37am
-;*****************************************************************
+;  Usage of the works is permitted under the terms of the 0-clause
+;  BSD license. See `LICENSE.TXT' for details.
+;*********************************************************************
+
         .model  compact,c
 
         .data
