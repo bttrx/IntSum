@@ -8,7 +8,7 @@
 //  BSD license. See `LICENSE.TXT' for details.
 //********************************************************************
 
-#define  cur_version "1.8"
+#define  cur_version "1.9"
 
 #define Version   "  Interrupt Summary Version " cur_version ", by Daniel D. Miller, Copyright (c) 1995/2021   "
 
