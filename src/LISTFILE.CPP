@@ -226,6 +226,7 @@ void process_list_file(int list_mode, char *save_file)
             display_help() ;
             display_logo() ;
             dprints(0, 0, LOGO, list_header) ;
+            dprints(1, 0, FILENAME, sname) ;
             display_list_file() ;
             break;
 
