@@ -1,12 +1,12 @@
 //********************************************************************
-//  IDATA.CPP - Global data for INTSUM application                    
-//                                                                    
-//  Copyright (c) 1996 Daniel D. Miller                               
-//                                                                    
-//  Last Update:  08-31-95 10:45pm                                    
-//                                                                    
-//  Compile with makefile                                             
-//                                                                    
+//  IDATA.CPP - Global data for INTSUM application
+//
+//  Copyright (c) 1996 Daniel D. Miller
+//
+//  Last Update:  08-31-95 10:45pm
+//
+//  Compile with makefile
+//
 //********************************************************************
 
 #include <stdio.h>   //  FILE*
@@ -31,7 +31,7 @@ char rdtemp[UNDERSHOOT] ;
 //********************************************************************
 //  used by one-line message functions and partial screen-clear
 //********************************************************************
-char spaces[121] = 
+char spaces[121] =
    "                                        "
    "                                        "
    "                                        " ; //  120 spaces
@@ -78,7 +78,7 @@ char ildrive[4] ;
 //*****************************************************************
 const unsigned DATA_TOP = 4 ;
 vidptr ivideo = { DATA_TOP } ;
-      
+
 unsigned window_rows ;  //  data lines, not counting header
 
 FILE* index ;
