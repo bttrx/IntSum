@@ -1,9 +1,9 @@
 ;*****************************************************************
-;  DVIDEO.ASM - Video functions for INTSUM.EXE                    
-;                                                                 
-;  Copyright (c) 1996 Daniel D. Miller                            
-;                                                                 
-;  Last Update: 10-14-95 11:37am                                  
+;  DVIDEO.ASM - Video functions for INTSUM.EXE
+;
+;  Copyright (c) 1996 Daniel D. Miller
+;
+;  Last Update: 10-14-95 11:37am
 ;*****************************************************************
         .model  compact,c
 
@@ -44,7 +44,7 @@ setB800:
         mov     ax,0B800h
         mov     VideoSeg,ax
         ret
-        
+
 select_video_seg endp
 
 ;  unsigned get_video_seg(void) ;
@@ -126,7 +126,7 @@ dprintc proc  C uses ax bx es di x:word, y:word, attr:byte, outchr:byte
         add     ax,x
         shl     ax,1    ;  ax <- (screen_width * 2 * y) + 2 * x
         ;  AX now contains offset to video destination
-        mov     di,ax   
+        mov     di,ax
         mov     ax,VideoSeg
         mov     es,ax   ;  ES:DI -> video dest
 
@@ -146,7 +146,7 @@ dprints proc  C uses ax bx es di ds si x:word, y:word, attr:byte, outstr:far ptr
         add     ax,x
         shl     ax,1    ;  ax <- (screen_width * 2 * y) + 2 * x
         ;  AX now contains offset to video destination
-        mov     di,ax   
+        mov     di,ax
         mov     ax,VideoSeg
         mov     es,ax   ;  ES:DI -> video dest
 
@@ -176,7 +176,7 @@ mark_cursor_line proc  C uses ax bx cx es di row:word, attr:byte
         mov     bx,row
         mul     bx      ; dx:ax <- ax * bx = screen_cols * y
         ;  AX now contains offset to video destination
-        mov     di,ax   
+        mov     di,ax
         mov     ax,VideoSeg
         mov     es,ax   ;  ES:DI -> video dest
         inc     di      ; point to attribute byte
@@ -192,7 +192,7 @@ mark_cursor_line endp
 
 
 ;********************************************************************
-;include keycodes.h with get_key() and key_hit()  
+;include keycodes.h with get_key() and key_hit()
 
 ;********************************************************************
 ; unsigned get_key(void)
@@ -240,3 +240,4 @@ home_cursor proc uses ax bx dx
 home_cursor endp
 
         end
+
