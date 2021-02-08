@@ -18,30 +18,27 @@
 
 //*****************************************************************
 char* help_str[] = {
-Version,
-"                   A viewer for Ralf Brown's Interrupt List.         ",
-" ",
-" Keyboard commands: ",
-"  F1, h : This help screen ",
-"  F2, s : Search for string ",
-"  F3, r : Repeat last search ",
-"  F4, t : Save selected topic to a file. (from Ref list only) ",
-"  Enter : In reference listing, display detailed info on current item. ",
-"  Esc   : Exit from program (in reference listing), ",
-"          Return to reference listing (in detail listing) ",
-" ",
-" The first time INTSUM is executed, it will create its custom index file",
-" before entering listing mode.  This brief operation will only occur once. ",
-" ",
-" To contact the author with bugs, comments or suggestions, use Internet",
-" or SnailNet:",
-" ",
-"     Internet:  derelict@netcom.com",
-"     SnailNet:  Daniel D. Miller ",
-"                36355 BridgePointe Drive",
-"                Newark, CA  94560",
-" ",
-" Since 2021 go to https://github.com/bttrx/IntSum instead.",
+"                       Interrupt Summary Version " cur_version,
+"                 A viewer for Ralf Brown's Interrupt List.",
+"",
+"Copyright (c) 1994-1996 Daniel D. Miller <derelict@netcom.com>",
+"Copyright (c) 2021 Robert Riebisch <rr@bttr-software.de>",
+"",
+"Usage of the works is permitted under the terms of the 0-clause",
+"BSD license. See `LICENSE.TXT' for details.",
+"",
+"",
+"Keyboard commands:",
+"  F1, h : This help screen",
+"  F2, s : Search for string",
+"  F3, r : Repeat last search",
+"  F4, t : Save selected topic to a file. (from Ref list only)",
+"  Enter : In reference listing, display detailed info on current item.",
+"  Esc   : Exit from program (in reference listing),",
+"          Return to reference listing (in detail listing)",
+"",
+"",
+"Please visit <https://github.com/bttrx/IntSum> for help or updates.",
    0 } ;
 
 void display_help(void)
@@ -50,7 +47,7 @@ void display_help(void)
    unsigned j = 0 ;
    while (help_str[j] != 0)
       {
-      dprints(1, j, HELP_TEXT, help_str[j]) ;
+      dprints(2, 1 + j, HELP_TEXT, help_str[j]) ;
       j++ ;
       }
    get_key() ;
