@@ -175,6 +175,7 @@ extern uchar HELP_TEXT ;
 //*****************************************************************
 //  display structs
 //*****************************************************************
+#define MSG_ROW      0
 #define DATA_TOP_ROW 2
 
 struct vidptr

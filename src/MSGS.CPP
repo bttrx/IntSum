@@ -69,23 +69,23 @@ const clock_t BLINK_RATE = 300 ;
 unsigned message_read(char* msg_str, char* instr)
    {
    //  display message for user
-   dprints(0, 2, MESSAGE, msg_str) ;
+   dprints(0, MSG_ROW, MESSAGE, msg_str) ;
 
    //  display previous value of instr
    unsigned mlen = strlen(msg_str) ;
-   dprints(mlen, 2, INPUT, instr) ;
+   dprints(mlen, MSG_ROW, INPUT, instr) ;
 
    //  fill remainder of line with input color
    unsigned ilen = strlen(instr) ;
    unsigned slen = 79 - mlen - ilen ;
    unsigned spos = mlen + ilen ;  //  data position on screen
    spaces[slen] = 0 ;   //  terminate the spaces string at required length
-   dprints(spos, 2, INPUT, spaces) ;
+   dprints(spos, MSG_ROW, INPUT, spaces) ;
    spaces[slen] = ' ' ; //  restore the spaces string
 
    //  initialize cursor
    int curmode = 1 ;
-   dprintc(spos, 2, INPUT, CURSOR_ON) ;
+   dprintc(spos, MSG_ROW, INPUT, CURSOR_ON) ;
    clock_t clk_time = clock() + BLINK_RATE ;
 
    //  get user input
@@ -97,14 +97,14 @@ unsigned message_read(char* msg_str, char* instr)
       if (key_hit())
          {
          //curmode = 0 ;
-         dprintc(spos, 2, INPUT, CURSOR_OFF) ;
+         dprintc(spos, MSG_ROW, INPUT, CURSOR_OFF) ;
          indata = get_key() ;
          switch (indata)
             {
             case Key_ESC:
                //  turn off cursor
                curmode = 0 ;
-               dprintc(spos, 2, INPUT, CURSOR_OFF) ;
+               dprintc(spos, MSG_ROW, INPUT, CURSOR_OFF) ;
                done = -1 ;
                break;
 
@@ -119,7 +119,7 @@ unsigned message_read(char* msg_str, char* instr)
                   {
                   mpos-- ;
                   *(instr+mpos) = 0 ;  //  NULL-terminate the string
-                  dprintc(--spos, 2, INPUT, ' ') ;
+                  dprintc(--spos, MSG_ROW, INPUT, ' ') ;
                   }
                break;
 
@@ -131,12 +131,12 @@ unsigned message_read(char* msg_str, char* instr)
                   {
                   *(instr+mpos) = outchr ;
                   mpos++ ;
-                  dprintc(spos++, 2, INPUT, outchr) ;
+                  dprintc(spos++, MSG_ROW, INPUT, outchr) ;
                   }
                break;
             }
          //curmode = 1 ;
-         dprintc(spos, 2, INPUT, CURSOR_ON) ;
+         dprintc(spos, MSG_ROW, INPUT, CURSOR_ON) ;
          // clk_time = clock() + BLINK_RATE ;
          }  //  if a key was pressed, read it
 
@@ -148,13 +148,13 @@ unsigned message_read(char* msg_str, char* instr)
             if (curmode == 0)
                {
                curmode = 1 ;
-               dprintc(spos, 2, INPUT, CURSOR_ON) ;
+               dprintc(spos, MSG_ROW, INPUT, CURSOR_ON) ;
                clk_time = clock() + BLINK_RATE ;
                }
             else
                {
                curmode = 0 ;
-               dprintc(spos, 2, INPUT, CURSOR_OFF) ;
+               dprintc(spos, MSG_ROW, INPUT, CURSOR_OFF) ;
                clk_time = clock() + BLINK_RATE ;
                }
             }
@@ -162,7 +162,7 @@ unsigned message_read(char* msg_str, char* instr)
       }
 
    //  restore the message line to normal data
-   dprints(0, 2, LOGO, header) ;
+   dprints(0, MSG_ROW, LOGO, header) ;
    return indata ;   //lint !e644
    }
 
@@ -174,18 +174,18 @@ unsigned message_read(char* msg_str, char* instr)
 void message_show(char* msg_str)
    {
    //  display message for user
-   dprints(0, 2, MESSAGE, msg_str) ;
+   dprints(0, MSG_ROW, MESSAGE, msg_str) ;
 
    //  fill remainder of line with input color
    unsigned mlen = strlen(msg_str) ;
    unsigned slen = 79 - mlen ;
    spaces[slen] = 0 ;   //  terminate the spaces string at required length
-   dprints(mlen, 2, MESSAGE, spaces) ;
+   dprints(mlen, MSG_ROW, MESSAGE, spaces) ;
    spaces[slen] = ' ' ; //  restore the spaces string
 
    get_key() ;
    //  restore the message line to normal data
-   dprints(0, 2, LOGO, header) ;
+   dprints(0, MSG_ROW, LOGO, header) ;
    }
 
 
