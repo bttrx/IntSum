@@ -1,6 +1,6 @@
 #***********************************************************
-#  INTSUM.MAK                                         
-#  Makefile for Interrupt Summary searching program   
+#  INTSUM.MAK
+#  Makefile for Interrupt Summary searching program
 #***********************************************************
 
 #  Comment out this line to remove debug information
@@ -82,3 +82,4 @@ distb:
 
 dists:
 	zip -9 -o -X ..\intsms.zip * -x .gitignore $(progexe) *.obj $(prog).map
+
