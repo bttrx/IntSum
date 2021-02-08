@@ -1,9 +1,9 @@
 //*********************************************************
-//  KEYCODES.H - BIOS scan codes for keyboard              
-//                                                         
-//  Compiled by:  Daniel D. Miller                         
-//  Last Update:  August 23, 1994                          
-//                                                         
+//  KEYCODES.H - BIOS scan codes for keyboard
+//
+//  Compiled by:  Daniel D. Miller
+//  Last Update:  August 23, 1994
+//
 //*********************************************************
 
 #define  Key_F1         0x3B00
@@ -426,3 +426,4 @@
 #define  Key_ShGMinus   0x4A2D
 #define  Key_CGMinus    0x8E00
 #define  Key_AltGMinus  0x4A00
+
