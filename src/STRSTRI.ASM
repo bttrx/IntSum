@@ -1,10 +1,10 @@
 ;*****************************************************************
-;  STRSTRI.ASM - Case-insensitive version of strstr() from        
-;                standard C library.                              
-;                                                                 
-;  Copyright (c) 1996 Daniel D. Miller                            
-;                                                                 
-;  Last Update: 07-23-95 11:36pm                                  
+;  STRSTRI.ASM - Case-insensitive version of strstr() from
+;                standard C library.
+;
+;  Copyright (c) 1996 Daniel D. Miller
+;
+;  Last Update: 07-23-95 11:36pm
 ;*****************************************************************
 
         .model  compact,c
@@ -12,9 +12,9 @@
         .code
 
 ;*****************************************************************
-;  perform case-insensitive compare between two characters,       
-;  return TRUE (nonzero) or FALSE (0) for the compare.            
-;  This routine is used by strstri(), which follows.              
+;  perform case-insensitive compare between two characters,
+;  return TRUE (nonzero) or FALSE (0) for the compare.
+;  This routine is used by strstri(), which follows.
 ;*****************************************************************
 ; int caseless_equality(const char chr1, const char chr2)
 compare_byte proc uses bx s1:byte, s2:byte
@@ -34,8 +34,8 @@ okay:
 compare_byte endp
 
 ;*****************************************************************
-;  Perform case-insensitive search for first occurance of         
-;  str2 within str1.  Returns MATCH (0) or NO_MATCH (0xFFFF).     
+;  Perform case-insensitive search for first occurance of
+;  str2 within str1.  Returns MATCH (0) or NO_MATCH (0xFFFF).
 ;int strstri(const char* str1, const char *str2)
 ;*****************************************************************
 strstri proc uses bx ds si es di str1:ptr byte, str2:ptr byte
@@ -99,9 +99,9 @@ yes_match:
 strstri endp
 
 ;*****************************************************************
-;  quick lookup table for character compare.  Every entry is same 
-;  as IBM ASCII, except that lower-case entries (0x60 - 0x7A) are 
-;  same as upper-case entries (0x40 - 0x5A).                      
+;  quick lookup table for character compare.  Every entry is same
+;  as IBM ASCII, except that lower-case entries (0x60 - 0x7A) are
+;  same as upper-case entries (0x40 - 0x5A).
 ;*****************************************************************
 ;uchar char_lookupi[256] = {
 char_lookupi    db      000h,001h,002h,003h,004h,005h,006h,007h
@@ -138,3 +138,4 @@ char_lookupi    db      000h,001h,002h,003h,004h,005h,006h,007h
         db      0F8h,0F9h,0FAh,0FBh,0FCh,0FDh,0FEh,0FFh
 
         end
+
