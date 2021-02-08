@@ -1,10 +1,10 @@
 //*********************************************************
-//  ERR_EXIT.CPP - Semi-standard error handler             
-//                                                         
-//  Copyright (c) 1996 Daniel D. Miller                               
-//                                                         
-//  Last Update:  08-20-95 02:18pm                         
-//                                                         
+//  ERR_EXIT.CPP - Semi-standard error handler
+//
+//  Copyright (c) 1996 Daniel D. Miller
+//
+//  Last Update:  08-20-95 02:18pm
+//
 //*********************************************************
 
 #include <stdio.h>
@@ -39,5 +39,4 @@ void error_exit(int err_code, char* errstr)
       printf("%s: %s\n", errstr, errmsg[err_code]) ;
    exit(err_code) ;
    }
-
 
