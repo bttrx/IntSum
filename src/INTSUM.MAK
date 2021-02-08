@@ -83,7 +83,7 @@ veryclean: clean
 dist: distb dists
 
 distb:
-	zip -9 -o -X ..\intsmb.zip INTSUM.EXE INTSUM.INI INTSUM.REV INTSUM.TXT
+	zip -9 -o -X ..\intsmb.zip INTSUM.EXE INTSUM.INI INTSUM.REV INTSUM.TXT LICENSE.TXT
 
 dists:
 	zip -9 -o -X ..\intsms.zip * -x .gitignore $(progexe) *.obj $(prog).map
