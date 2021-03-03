@@ -74,10 +74,10 @@ Version 1.0, released 1995-07-13
 
 Version 0.90, released 1995-06-21
     -> <S>earch now works properly in all windows.
-    -> <R>earch Last Search now works properly in all windows.
+    -> <R>epeat Last Search now works properly in all windows.
        (NOTE on searches:  searches in the List windows
         still do not cross file boundaries; that will come soon).
-    -> Searches are now non-case-sensitive.
+    -> Searches are now case-insensitive.
     -> Search field now has a blinking cursor.
     -> List window now displays current filename.
     -> Home/End keys are now supported.
